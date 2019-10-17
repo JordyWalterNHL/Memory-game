@@ -23,6 +23,8 @@ namespace Memory_game
         public MainWindow()
         {
             InitializeComponent();
+
+            MemoryGrid memoryGrid = new MemoryGrid(GameGrid, 4, 4);
         }
     }
 }
