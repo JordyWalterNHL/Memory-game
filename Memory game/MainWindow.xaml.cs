@@ -24,7 +24,8 @@ namespace Memory_game
         {
             InitializeComponent();
 
-            MemoryGrid memoryGrid = new MemoryGrid(GameGrid, 4, 4);
+            Players players = new Players(NameOne, NameTwo, ScoreOne, ScoreTwo);
+            MemoryGrid memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
         }
     }
 }

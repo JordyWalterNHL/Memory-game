@@ -7,8 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="GameGrid" Margin="160,10,160,10">
-            
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="Back.jpg" Stretch="Fill"></ImageBrush>
+            </Grid.Background>
+            <Grid x:Name="PlayerAreaOne" HorizontalAlignment="Left" Margin="0,0,640,0">
+                <TextBox x:Name="NameOne" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+                <TextBox x:Name="ScoreOne" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+
+            </Grid>
+            <Grid x:Name="GameGrid" Margin="160,10,160,10">
+
+            </Grid>
+            <Grid x:Name="PlayerAreaTwo" HorizontalAlignment="Right" Margin="640,0,0,0">
+                <TextBox x:Name="NameTwo" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+                <TextBox x:Name="ScoreTwo" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+            </Grid>
         </Grid>
+
     </Grid>
 </Window>

@@ -20,6 +20,7 @@ namespace Memory_game
     class MemoryGrid
     {
         private Grid grid;
+        private Players player;
 
         private int rows, colums, cardAmount;
         private int firstCardId, secondCardId;
@@ -42,12 +43,13 @@ namespace Memory_game
             return images;
         }
 
-        public MemoryGrid(Grid grid, int rows, int cols)
+        public MemoryGrid(Grid grid, int rows, int cols, Players player)
         {
             this.grid = grid;
             this.rows = rows;
             this.colums = cols;
             this.cardAmount = rows * cols;
+            this.player = player;
 
             CreateGameGrid();
             AddCards();
@@ -164,6 +166,8 @@ namespace Memory_game
                         //TODO: Actions after you get a combination
                         TurnedCards[0].Source = null;
                         TurnedCards[1].Source = null;
+
+                        player.RightAnswer();
                     }
                     else
                     {
@@ -172,6 +176,9 @@ namespace Memory_game
 
                         GameCards[firstCardId].beenClicked = false;
                         GameCards[secondCardId].beenClicked = false;
+
+                        player.WrongAnswer();
+
                     }
 
                     TurnedCards.Clear();

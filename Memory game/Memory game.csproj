@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="MemoryCard.cs" />
     <Compile Include="MemoryGrid.cs" />
+    <Compile Include="Players.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -128,6 +129,9 @@
     <Resource Include="Images\8.png" />
     <Resource Include="Images\9.png" />
     <Resource Include="Images\turkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Back.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
