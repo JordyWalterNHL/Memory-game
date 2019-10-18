@@ -78,34 +78,52 @@ namespace Memory_game
         private void AddCards()
         {
             List<ImageSource> images = GetImageSources();
-            int idCount = 0;
+            //Add cards to list
+            for (int i = 0; i < cardAmount; i++)
+            {
+                ImageSource front = images.First();
+                images.RemoveAt(0);
 
+                GameCards.Add(new MemoryCard(front, i)
+                {
+                    value = i % (cardAmount / 2) + 1
+                });
+            }
+
+            //Shuffle list
+            List<MemoryCard> MemoryCards = new List<MemoryCard>();
+            List<MemoryCard> GameCardsCopy = new List<MemoryCard>();
+            GameCardsCopy.AddRange(GameCards);
+
+            for (int i = 0; i < GameCards.Count; i++)
+            {
+                Random random = new Random();
+                int index = random.Next(0, GameCardsCopy.Count);
+
+                MemoryCards.Add(GameCardsCopy[index]);
+                GameCardsCopy.RemoveAt(index);
+            }
+
+            int cardCount = 0;
+
+            //display cards
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < colums; j++)
                 {
-                    ImageSource back = new BitmapImage(new Uri("Images/turkey.png", UriKind.Relative));
-                    ImageSource front = images.First();
-                    images.RemoveAt(0);
-
-                    MemoryCard memoryCard = new MemoryCard(back, front, idCount);
-                    memoryCard.value = idCount % (cardAmount / 2) + 1;
-
-                    GameCards.Add(memoryCard);
-
                     Image cardImage = new Image
                     {
-                        Source = memoryCard.GetBackSource(),
-                        Tag = memoryCard.id
+                        Source = MemoryCards[cardCount].GetBackSource(),
+                        Tag = MemoryCards[cardCount].id
                     };
+
+                    cardCount++;
 
                     cardImage.MouseDown += new MouseButtonEventHandler(CustomCardClick);
 
                     Grid.SetRow(cardImage, i);
                     Grid.SetColumn(cardImage, j);
                     grid.Children.Add(cardImage);
-
-                    idCount++;
                 }
             }
         }
@@ -143,7 +161,9 @@ namespace Memory_game
                 {
                     if (GameCards[firstCardId].value == GameCards[secondCardId].value)
                     {
-                        //What to do when you have a memory
+                        //TODO: Actions after you get a combination
+                        TurnedCards[0].Source = null;
+                        TurnedCards[1].Source = null;
                     }
                     else
                     {

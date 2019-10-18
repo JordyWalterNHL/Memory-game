@@ -27,9 +27,9 @@ namespace Memory_game
 
         public bool beenClicked;
 
-        public MemoryCard(ImageSource backSource, ImageSource frontSource, int id)
+        public MemoryCard(ImageSource frontSource, int id)
         {
-            this.backSource = backSource;
+            this.backSource = new BitmapImage(new Uri("Images/turkey.png", UriKind.Relative));
             this.frontSource = frontSource;
             this.id = id;
         }
