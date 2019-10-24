@@ -97,9 +97,9 @@ namespace Memory_game
             List<MemoryCard> GameCardsCopy = new List<MemoryCard>();
             GameCardsCopy.AddRange(GameCards);
 
+            Random random = new Random();
             for (int i = 0; i < GameCards.Count; i++)
             {
-                Random random = new Random();
                 int index = random.Next(0, GameCardsCopy.Count);
 
                 MemoryCards.Add(GameCardsCopy[index]);
