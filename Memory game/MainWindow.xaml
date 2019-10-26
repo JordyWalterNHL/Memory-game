@@ -24,6 +24,10 @@
                 <TextBox x:Name="ScoreTwo" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
             </Grid>
         </Grid>
-
+        <Grid>
+          <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="640,0,10,10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="ResetButtonClick">
+            <Image Height="40px" Source="Images/reset.png"></Image>
+          </Button>
+        </Grid>
     </Grid>
 </Window>
