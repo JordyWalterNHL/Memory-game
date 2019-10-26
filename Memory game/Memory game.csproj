@@ -133,5 +133,8 @@
   <ItemGroup>
     <Resource Include="Back.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\reset.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
