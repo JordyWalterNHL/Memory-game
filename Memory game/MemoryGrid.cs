@@ -19,7 +19,7 @@ namespace Memory_game
 {
     class MemoryGrid
     {
-        private static Grid grid;
+        private Grid grid;
         private Players player;
 
         private int rows, colums, cardAmount;
@@ -129,10 +129,10 @@ namespace Memory_game
                 }
             }
         }
-        public static void ResetBoard()
+        public void ResetBoard()
         {
             grid.Children.Clear();
-            //TODO: redraw cards!
+            AddCards();
         }
 
         /// <summary>

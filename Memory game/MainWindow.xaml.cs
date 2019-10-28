@@ -20,16 +20,17 @@ namespace Memory_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        MemoryGrid memoryGrid;
         public MainWindow()
         {
             InitializeComponent();
 
             Players players = new Players(NameOne, NameTwo, ScoreOne, ScoreTwo);
-            MemoryGrid memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
+            memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
         }
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
-            MemoryGrid.ResetBoard();
+            memoryGrid.ResetBoard();
         }
     }
 }
