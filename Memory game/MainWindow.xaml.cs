@@ -28,6 +28,11 @@ namespace Memory_game
             Players players = new Players(NameOne, NameTwo, ScoreOne, ScoreTwo);
             memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
         }
+        /// <summary>
+        /// Handles the reset button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
             memoryGrid.ResetBoard();
