@@ -22,7 +22,7 @@ namespace Memory_game
         public Players(TextBox nameOne, TextBox nameTwo, TextBox scoreOne, TextBox scoreTwo)
         {
             players[0] = new PlayerData("Berber", nameOne, scoreOne);
-            players[1] = new PlayerData("Some", nameTwo, scoreTwo);
+            players[1] = new PlayerData("Jort", nameTwo, scoreTwo);
         }
 
         public void WrongAnswer()
