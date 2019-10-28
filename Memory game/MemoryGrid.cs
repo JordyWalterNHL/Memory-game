@@ -135,6 +135,11 @@ namespace Memory_game
         public void ResetBoard()
         {
             grid.Children.Clear();
+            GameCards.Clear();
+            TurnedCards.Clear();
+            player.ClearMemory();
+            canClick = true;
+            secondClick = false;
             AddCards();
         }
 

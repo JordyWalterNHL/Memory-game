@@ -34,6 +34,11 @@ namespace Memory_game
         {
             CurrentPlayer.GetMemory();
         }
+        public void ClearMemory()
+        {
+            players[0].ClearMemory();
+            players[1].ClearMemory();
+        }
     }
 
     class PlayerData
@@ -64,6 +69,11 @@ namespace Memory_game
         public void GetMemory()
         {
             memories++;
+            UpdateUI();
+        }
+        public void ClearMemory()
+        {
+            memories = 0;
             UpdateUI();
         }
     }
