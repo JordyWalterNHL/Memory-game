@@ -129,6 +129,9 @@ namespace Memory_game
                 }
             }
         }
+        /// <summary>
+        /// Clears grid and Adds new cards
+        /// </summary>
         public void ResetBoard()
         {
             grid.Children.Clear();
