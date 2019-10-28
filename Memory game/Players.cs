@@ -19,15 +19,17 @@ namespace Memory_game
             }
         }
 
-        public Players(TextBox nameOne, TextBox nameTwo, TextBox scoreOne, TextBox scoreTwo)
+        public Players(TextBox nameOne, TextBox nameTwo, TextBox scoreOne, TextBox scoreTwo, TextBox playerTurn)
         {
-            players[0] = new PlayerData("Berber", nameOne, scoreOne);
-            players[1] = new PlayerData("Some", nameTwo, scoreTwo);
+            players[0] = new PlayerData("Berber", nameOne, scoreOne, playerTurn);
+            players[1] = new PlayerData("Some", nameTwo, scoreTwo, playerTurn);
+            players[0].SetPlayerTurn();
         }
 
         public void WrongAnswer()
         {
             playerTwo = !playerTwo;
+            CurrentPlayer.SetPlayerTurn();
         }
 
         public void RightAnswer()
@@ -39,6 +41,12 @@ namespace Memory_game
             players[0].ClearMemory();
             players[1].ClearMemory();
         }
+        
+        public void SetPlayerOne()
+        {
+            playerTwo = false;
+            CurrentPlayer.SetPlayerTurn();
+        }
     }
 
     class PlayerData
@@ -49,20 +57,21 @@ namespace Memory_game
         private int memories;
         private TextBox scoreBox;
 
+        private TextBox playerTurn;
         private float points;
 
-        public PlayerData(string playerName, TextBox nameBox, TextBox scoreBox)
+        public PlayerData(string playerName, TextBox nameBox, TextBox scoreBox, TextBox playerTurn)
         {
             this.name = playerName;
             this.nameBox = nameBox;
             this.scoreBox = scoreBox;
+            this.playerTurn = playerTurn;
             UpdateUI();
         }
 
         private void UpdateUI()
         {
             nameBox.Text = name;
-
             scoreBox.Text = memories.ToString();
         }
 
@@ -75,6 +84,10 @@ namespace Memory_game
         {
             memories = 0;
             UpdateUI();
+        }
+        public void SetPlayerTurn()
+        {
+            playerTurn.Text = "It's " + name + "'s turn!";
         }
     }
 }

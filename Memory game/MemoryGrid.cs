@@ -138,6 +138,7 @@ namespace Memory_game
             GameCards.Clear();
             TurnedCards.Clear();
             player.ClearMemory();
+            player.SetPlayerOne();
             canClick = true;
             secondClick = false;
             AddCards();

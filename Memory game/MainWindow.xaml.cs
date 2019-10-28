@@ -25,7 +25,7 @@ namespace Memory_game
         {
             InitializeComponent();
 
-            Players players = new Players(NameOne, NameTwo, ScoreOne, ScoreTwo);
+            Players players = new Players(NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn);
             memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
         }
         /// <summary>
@@ -36,6 +36,11 @@ namespace Memory_game
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
             memoryGrid.ResetBoard();
+        }
+        private void PlayButtonClick(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Collapsed;
+            GameWindow.Visibility = Visibility.Visible;
         }
     }
 }
