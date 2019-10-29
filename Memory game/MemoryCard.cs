@@ -29,7 +29,7 @@ namespace Memory_game
 
         public MemoryCard(ImageSource frontSource, int id)
         {
-            this.backSource = new BitmapImage(new Uri("Images/turkey.png", UriKind.Relative));
+            this.backSource = new BitmapImage(new Uri("Images/CardBack.png", UriKind.Relative));
             this.frontSource = frontSource;
             this.id = id;
         }
