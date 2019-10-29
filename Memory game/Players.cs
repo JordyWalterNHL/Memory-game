@@ -19,10 +19,10 @@ namespace Memory_game
             }
         }
 
-        public Players(TextBox nameOne, TextBox nameTwo, TextBox scoreOne, TextBox scoreTwo, TextBox playerTurn)
+        public Players(string name1, string name2, TextBlock nameOne, TextBlock nameTwo, TextBlock scoreOne, TextBlock scoreTwo, TextBlock playerTurn)
         {
-            players[0] = new PlayerData("Berber", nameOne, scoreOne, playerTurn);
-            players[1] = new PlayerData("Some", nameTwo, scoreTwo, playerTurn);
+            players[0] = new PlayerData(name1, nameOne, scoreOne, playerTurn);
+            players[1] = new PlayerData(name2, nameTwo, scoreTwo, playerTurn);
             players[0].SetPlayerTurn();
         }
 
@@ -52,15 +52,15 @@ namespace Memory_game
     class PlayerData
     {
         private string name;
-        private TextBox nameBox;
+        private TextBlock nameBox;
 
         private int memories;
-        private TextBox scoreBox;
+        private TextBlock scoreBox;
 
-        private TextBox playerTurn;
+        private TextBlock playerTurn;
         private float points;
 
-        public PlayerData(string playerName, TextBox nameBox, TextBox scoreBox, TextBox playerTurn)
+        public PlayerData(string playerName, TextBlock nameBox, TextBlock scoreBox, TextBlock playerTurn)
         {
             this.name = playerName;
             this.nameBox = nameBox;

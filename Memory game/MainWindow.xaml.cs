@@ -21,12 +21,12 @@ namespace Memory_game
     public partial class MainWindow : Window
     {
         MemoryGrid memoryGrid;
+        string name1, name2;
         public MainWindow()
         {
             InitializeComponent();
-
-            Players players = new Players(NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn);
-            memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
+            MainMenu.Visibility = Visibility.Collapsed;
+            GameWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Handles the reset button click
@@ -40,6 +40,15 @@ namespace Memory_game
         private void PlayButtonClick(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Collapsed;
+            SelectWindow.Visibility = Visibility.Visible;
+        }
+        private void SelectWindowPlay(object sender, RoutedEventArgs e)
+        {
+            name1 = Name1.Text;
+            name2 = Name2.Text;
+            Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn);
+            memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
+            SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Visible;
         }
     }

@@ -13,24 +13,39 @@
                 <TextBlock>Playy!</TextBlock>
             </Button>
         </Grid>
-        <Grid x:Name="GameWindow" Visibility="Collapsed">
+        <Grid x:Name="SelectWindow">
+            <Button Width="200px" VerticalAlignment="Top" Margin="0,20,0,0" Click="SelectWindowPlay">
+                <TextBlock>Playy!</TextBlock>
+            </Button>
+            <Grid HorizontalAlignment="Left" Width="250px">
+                <Grid HorizontalAlignment="Left" Width="125px">
+                    <TextBlock Height="50px">Name 1:</TextBlock>
+                    <TextBox x:Name="Name1" HorizontalAlignment="Left" Width="120px" Height="25px" Margin="0,20,0,0"/>
+                </Grid>
+                <Grid HorizontalAlignment="Right" Width="125px">
+                    <TextBlock Height="50px">Name 2:</TextBlock>
+                    <TextBox x:Name="Name2" HorizontalAlignment="Right" Width="120px" Height="25px" Margin="0,20,0,0"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid x:Name="GameWindow">
             <Grid.Background>
                 <ImageBrush ImageSource="Back.jpg" Stretch="Fill"></ImageBrush>
             </Grid.Background>
             <Grid x:Name="PlayerAreaOne" HorizontalAlignment="Left" Margin="0,0,640,0">
-                <TextBox x:Name="NameOne" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
-                <TextBox x:Name="ScoreOne" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+                <TextBlock x:Name="NameOne" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20" Background="White"/>
+                <TextBlock x:Name="ScoreOne" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20" Background="White"/>
 
             </Grid>
             <Grid x:Name="GameGrid" Margin="160,10,160,10">
 
             </Grid>
             <Grid x:Name="PlayerAreaTwo" HorizontalAlignment="Right" Margin="640,0,0,0">
-                <TextBox x:Name="NameTwo" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
-                <TextBox x:Name="ScoreTwo" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+                <TextBlock x:Name="NameTwo" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20" Background="White"/>
+                <TextBlock x:Name="ScoreTwo" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20" Background="White"/>
             </Grid>
             <Grid x:Name="InfoArea" HorizontalAlignment="Center">
-                <TextBox x:Name="PlayerTurn" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20"/>
+                <TextBlock x:Name="PlayerTurn" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" VerticalAlignment="Top" Width="152" Height="20" Background="White"/>
             </Grid>
             <Grid>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="640,0,10,10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="ResetButtonClick">
