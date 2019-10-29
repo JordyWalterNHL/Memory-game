@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:Memory_game"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="ChunkFive">
+            <Setter Property="TextElement.FontFamily" 
+        Value="pack://application:,,,/Fonts/#ChunkFive" />
+        </Style>
     </Application.Resources>
 </Application>

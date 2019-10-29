@@ -5,19 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memory_game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-
+        Title="MainWindow" Height="450" Width="800"
+        Style="{StaticResource ChunkFive}">
+    <Window.Resources>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Franklin Gothic" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid x:Name="MainMenu">
-            <Button Click="PlayButtonClick">
-                <TextBlock>Playy!</TextBlock>
-            </Button>
+            <Grid Width="400" HorizontalAlignment="Left">
+                
+                <Button Click="PlayButtonClick">
+                    <TextBlock>Playy!</TextBlock>
+                </Button>
+            </Grid>
+            <Grid Width="400" HorizontalAlignment="Right">
+                <TextBlock>High Scores!</TextBlock>
+            </Grid>
         </Grid>
         <Grid x:Name="SelectWindow">
             <Button Width="200px" VerticalAlignment="Top" Margin="0,20,0,0" Click="SelectWindowPlay">
                 <TextBlock>Playy!</TextBlock>
             </Button>
-            <Grid HorizontalAlignment="Left" Width="250px">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,80,0,0" Width="250px">
                 <Grid HorizontalAlignment="Left" Width="125px">
                     <TextBlock Height="50px">Name 1:</TextBlock>
                     <TextBox x:Name="Name1" HorizontalAlignment="Left" Width="120px" Height="25px" Margin="0,20,0,0"/>
@@ -26,6 +37,9 @@
                     <TextBlock Height="50px">Name 2:</TextBlock>
                     <TextBox x:Name="Name2" HorizontalAlignment="Right" Width="120px" Height="25px" Margin="0,20,0,0"/>
                 </Grid>
+            </Grid>
+            <Grid>
+                
             </Grid>
         </Grid>
         <Grid x:Name="GameWindow">

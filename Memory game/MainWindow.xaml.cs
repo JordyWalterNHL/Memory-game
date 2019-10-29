@@ -25,7 +25,7 @@ namespace Memory_game
         public MainWindow()
         {
             InitializeComponent();
-            MainMenu.Visibility = Visibility.Collapsed;
+            SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
@@ -46,10 +46,19 @@ namespace Memory_game
         {
             name1 = Name1.Text;
             name2 = Name2.Text;
-            Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn);
-            memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
-            SelectWindow.Visibility = Visibility.Collapsed;
-            GameWindow.Visibility = Visibility.Visible;
+            if (!String.IsNullOrEmpty(name1))
+            {
+                if (!String.IsNullOrEmpty(name2))
+                {
+                    Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn);
+                    memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
+                    SelectWindow.Visibility = Visibility.Collapsed;
+                    GameWindow.Visibility = Visibility.Visible;
+                }
+                //TODO: don't be annoying by showing messageboxes, just pop a normal warning on screen
+                else { MessageBox.Show("Please input two names"); }
+            }
+            else { MessageBox.Show("Please input two names"); }
         }
     }
 }
