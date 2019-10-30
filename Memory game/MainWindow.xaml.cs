@@ -22,6 +22,7 @@ namespace Memory_game
     {
         MemoryGrid memoryGrid;
         string name1, name2;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -50,15 +51,23 @@ namespace Memory_game
             {
                 if (!String.IsNullOrEmpty(name2))
                 {
-                    Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn);
+                    Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
                     memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
                     SelectWindow.Visibility = Visibility.Collapsed;
                     GameWindow.Visibility = Visibility.Visible;
                 }
                 //TODO: don't be annoying by showing messageboxes, just pop a normal warning on screen
-                else { MessageBox.Show("Please input two names"); }
+                else { PlayerWarningBox.Text = "Please put in two names!"; }
             }
-            else { MessageBox.Show("Please input two names"); }
+            else { PlayerWarningBox.Text = "Please put in two names!"; }
+        }
+        private void ExtraButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ExitButtonClick(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

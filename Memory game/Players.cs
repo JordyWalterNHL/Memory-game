@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Memory_game
 {
@@ -11,6 +12,7 @@ namespace Memory_game
     {
         private PlayerData[] players = new PlayerData[2];
         private bool playerTwo;
+        Grid playerTurnColor;
         public PlayerData CurrentPlayer
         {
             get
@@ -19,17 +21,27 @@ namespace Memory_game
             }
         }
 
-        public Players(string name1, string name2, TextBlock nameOne, TextBlock nameTwo, TextBlock scoreOne, TextBlock scoreTwo, TextBlock playerTurn)
+        public Players(string name1, string name2, TextBlock nameOne, TextBlock nameTwo, TextBlock scoreOne, TextBlock scoreTwo, TextBlock playerTurn, Grid playerTurnColor)
         {
             players[0] = new PlayerData(name1, nameOne, scoreOne, playerTurn);
             players[1] = new PlayerData(name2, nameTwo, scoreTwo, playerTurn);
             players[0].SetPlayerTurn();
+            this.playerTurnColor = playerTurnColor;
+            playerTurnColor.Background = new SolidColorBrush(Colors.Blue);
         }
 
         public void WrongAnswer()
         {
             playerTwo = !playerTwo;
             CurrentPlayer.SetPlayerTurn();
+            if (playerTwo)
+            {
+                playerTurnColor.Background = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                playerTurnColor.Background = new SolidColorBrush(Colors.Blue);
+            }
         }
 
         public void RightAnswer()
@@ -46,6 +58,7 @@ namespace Memory_game
         {
             playerTwo = false;
             CurrentPlayer.SetPlayerTurn();
+            playerTurnColor.Background = new SolidColorBrush(Colors.Blue);
         }
     }
 
