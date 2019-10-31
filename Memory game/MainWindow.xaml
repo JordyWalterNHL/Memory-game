@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memory_game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="450" Width="800" 
         Style="{StaticResource ChunkFive}">
     <Grid Margin="4,0,-4.4,0">
         <Grid x:Name="MainMenu">
@@ -161,6 +161,10 @@
                         <Image Source="Images/reset.png"></Image>
                     </Button>
                 </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="4">
+                <Label x:Name="TimerLabel" Content="0" FontFamily="Segoe UI" FontSize="50" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                </Label>
             </Grid>
         </Grid>
     </Grid>
