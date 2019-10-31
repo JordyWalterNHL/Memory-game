@@ -69,20 +69,63 @@ namespace Memory_game
             {
                 if (!String.IsNullOrEmpty(name2))
                 {
+                    int index = GridSelection.SelectedIndex;
+                    int rows = 4;
+                    int cols = 4;
+                    switch (index)
+                    {
+                        case 0:
+                            rows = 4;
+                            cols = 4;
+                            break;
+                        case 1:
+                            rows = 4;
+                            cols = 5;
+                            break;
+                        case 2:
+                            rows = 4;
+                            cols = 6;
+                            break;
+                        case 3:
+                            rows = 5;
+                            cols = 6;
+                            break;
+                        case 4:
+                            rows = 6;
+                            cols = 6;
+                            break;
+                        default:
+                            rows = 4;
+                            cols = 4;
+                            break;
+                    }
                     Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
-                    memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
+                    memoryGrid = new MemoryGrid(GameGrid, rows, cols, players);
                     SelectWindow.Visibility = Visibility.Collapsed;
                     GameWindow.Visibility = Visibility.Visible;
 
                     dt.Interval = TimeSpan.FromSeconds(1);
                     dt.Tick += dtTicker;
                     dt.Start();
-                   
+
                 }
-                //TODO: don't be annoying by showing messageboxes, just pop a normal warning on screen
-                else { PlayerWarningBox.Text = "Please enter two names!"; }
+                else
+                {
+                    PlayerWarningBox.Visibility = Visibility.Visible;
+                    Task.Delay(2000).ContinueWith(_ =>
+                    {
+                        PlayerWarningBox.Visibility = Visibility.Collapsed;
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                }
             }
-            else { PlayerWarningBox.Text = "Please enter two names!"; }
+            else
+            {
+                PlayerWarningBox.Visibility = Visibility.Visible;
+                Task.Delay(2000).ContinueWith(_ =>
+                {
+                    PlayerWarningBox.Visibility = Visibility.Collapsed;
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {

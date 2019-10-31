@@ -58,16 +58,19 @@
         <Grid x:Name="SelectWindow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.Background>
@@ -78,36 +81,69 @@
                     <TextBlock FontSize="40px">Memory</TextBlock>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="1">
+            <Grid x:Name="PlayerWarningBox" Grid.Column="2" Grid.Row="1" Visibility="Collapsed">
                 <Viewbox VerticalAlignment="Top">
-                    <TextBlock x:Name="PlayerWarningBox" FontSize="20px" Foreground="Red"/>
+                    <TextBlock FontSize="20px" Foreground="Red" Text="Please enter two names!"/>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="5">
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Names</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Name 1:</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="3">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBox x:Name="Name1" FontSize="8px" Width="64"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="4">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Name 2:</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="4">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBox x:Name="Name2" FontSize="8px" Width="64"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="2">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Grid</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="3">
+                <Viewbox >
+                    <StackPanel>
+                        <ComboBox x:Name="GridSelection" FontSize="8px">
+                            <ComboBoxItem IsSelected="True">
+                                <TextBlock>4x4</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>4x5</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>4x6</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>5x6</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>6x6</TextBlock>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8">
                 <Viewbox Margin="0,0,0,10">
                     <Button Click="SelectWindowPlay" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0">
                         <TextBlock FontSize="30px">Play</TextBlock>
                     </Button>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Column="0" Grid.Row="2">
-                <Viewbox Margin="2,0,5,0">
-                    <TextBlock FontSize="12px">Name 1:</TextBlock>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
-                <Viewbox Margin="5,0,0,0">
-                    <TextBox x:Name="Name1" FontSize="8px" Width="64"/>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Column="0" Grid.Row="3">
-                <Viewbox Margin="2,0,5,0">
-                    <TextBlock FontSize="12px">Name 2:</TextBlock>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Column="1" Grid.Row="3">
-                <Viewbox Margin="5,0,0,0">
-                    <TextBox x:Name="Name2" FontSize="8px" Width="64"/>
                 </Viewbox>
             </Grid>
         </Grid>
