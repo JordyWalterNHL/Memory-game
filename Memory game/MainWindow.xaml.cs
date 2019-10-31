@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+
 
 namespace Memory_game
 {
@@ -20,6 +22,9 @@ namespace Memory_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int timer = 0;
+        DispatcherTimer dt = new DispatcherTimer();
+
         MemoryGrid memoryGrid;
         string name1, name2;
         
@@ -30,13 +35,15 @@ namespace Memory_game
             GameWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
-        /// Handles the reset button click
+        /// Handles the reset button click 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
             memoryGrid.ResetBoard();
+            timer = -1;
+            dt.Start();
         }
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
@@ -48,6 +55,12 @@ namespace Memory_game
             MainMenu.Visibility = Visibility.Collapsed;
             SelectWindow.Visibility = Visibility.Visible;
         }
+
+        /// <summary>
+        /// Timer + window visibility
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectWindowPlay(object sender, RoutedEventArgs e)
         {
             name1 = Name1.Text;
@@ -60,6 +73,11 @@ namespace Memory_game
                     memoryGrid = new MemoryGrid(GameGrid, 4, 4, players);
                     SelectWindow.Visibility = Visibility.Collapsed;
                     GameWindow.Visibility = Visibility.Visible;
+
+                    dt.Interval = TimeSpan.FromSeconds(1);
+                    dt.Tick += dtTicker;
+                    dt.Start();
+                   
                 }
                 //TODO: don't be annoying by showing messageboxes, just pop a normal warning on screen
                 else { PlayerWarningBox.Text = "Please put in two names!"; }
@@ -73,6 +91,23 @@ namespace Memory_game
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+ 
+        /// <summary>
+        /// Optellende timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dtTicker(object sender, EventArgs e)
+        {
+            timer++;
+
+            TimerLabel.Content = timer.ToString();
+
+            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
+            {
+                dt.Stop();
+            }
         }
     }
 }
