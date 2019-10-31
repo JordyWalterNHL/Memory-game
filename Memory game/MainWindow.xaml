@@ -162,6 +162,13 @@
                     </Button>
                 </Viewbox>
             </Grid>
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,5,5">
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
+                        <Image Source="Images/home.png"></Image>
+                    </Button>
+                </Viewbox>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

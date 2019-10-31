@@ -38,6 +38,11 @@ namespace Memory_game
         {
             memoryGrid.ResetBoard();
         }
+        private void HomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
         private void PlayButtonClick(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Collapsed;
