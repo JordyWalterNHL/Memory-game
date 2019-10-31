@@ -102,7 +102,7 @@ namespace Memory_game
         {
             timer++;
 
-            TimerLabel.Content = timer.ToString();
+            TimerLabel.Text = timer.ToString();
 
             if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
             {
