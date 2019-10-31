@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memory_game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" 
+        Icon="/Images/CardBack.png"
+        Title="Memory Game" Height="450" Width="800" 
         Style="{StaticResource ChunkFive}">
-    <Grid Margin="4,0,-4.4,0">
+    <Grid Margin="0,0,0,0">
         <Grid x:Name="MainMenu">
             <Grid.Background>
                 <ImageBrush ImageSource="Back.jpg" Stretch="Fill"></ImageBrush>
@@ -42,7 +43,7 @@
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="3">
-                <Viewbox HorizontalAlignment="Left" Margin="5,0,40,5">
+                <Viewbox HorizontalAlignment="Left" Margin="5,0,0,5">
                     <Button Click="ExitButtonClick" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <TextBlock FontSize="8px">Exit Game</TextBlock>
                     </Button>
@@ -90,7 +91,7 @@
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="2">
-                <Viewbox Margin="0,0,5,0">
+                <Viewbox Margin="2,0,5,0">
                     <TextBlock FontSize="12px">Name 1:</TextBlock>
                 </Viewbox>
             </Grid>
@@ -100,7 +101,7 @@
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="3">
-                <Viewbox Margin="0,0,5,0">
+                <Viewbox Margin="2,0,5,0">
                     <TextBlock FontSize="12px">Name 2:</TextBlock>
                 </Viewbox>
             </Grid>
@@ -164,7 +165,7 @@
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="4">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,5,5">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="2,0,0,1">
                     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
                         <Image Source="Images/home.png"></Image>
                     </Button>

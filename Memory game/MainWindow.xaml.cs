@@ -80,9 +80,9 @@ namespace Memory_game
                    
                 }
                 //TODO: don't be annoying by showing messageboxes, just pop a normal warning on screen
-                else { PlayerWarningBox.Text = "Please put in two names!"; }
+                else { PlayerWarningBox.Text = "Please enter two names!"; }
             }
-            else { PlayerWarningBox.Text = "Please put in two names!"; }
+            else { PlayerWarningBox.Text = "Please enter two names!"; }
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
