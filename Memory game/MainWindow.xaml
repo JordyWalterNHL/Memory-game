@@ -55,7 +55,7 @@
                     <TextBlock FontSize="50px">High Scores!</TextBlock>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="5">
+            <Grid x:Name="HighScores" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -64,36 +64,24 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Viewbox>
-                        <TextBlock x:Name="Score1">hoi</TextBlock>
-                    </Viewbox>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Viewbox>
-                        <TextBlock x:Name="Score2">doei</TextBlock>
-                    </Viewbox>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Viewbox>
-                        <TextBlock x:Name="Score3">banaan</TextBlock>
-                    </Viewbox>
-                </Grid>
-                <Grid Grid.Row="3">
-                    <Viewbox>
-                        <TextBlock x:Name="Score4">aardappel</TextBlock>
-                    </Viewbox>
-                </Grid>
-                <Grid Grid.Row="4">
-                    <Viewbox>
-                        <TextBlock x:Name="Score5">aardappel</TextBlock>
-                    </Viewbox>
-                </Grid>
-                <Grid Grid.Row="5">
-                    <Viewbox>
-                        <TextBlock x:Name="Score6">aardappel</TextBlock>
-                    </Viewbox>
-                </Grid>
+                <!--<Viewbox Grid.Row="0">
+                    <TextBlock x:Name="Score1">hoi</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <TextBlock x:Name="Score2">hoi</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="2">
+                    <TextBlock x:Name="Score3">hoi</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="3">
+                    <TextBlock x:Name="Score4">hoi</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="4">
+                    <TextBlock x:Name="Score5">hoi</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="5">
+                    <TextBlock x:Name="Score6">hoi</TextBlock>
+                </Viewbox>-->
             </Grid>
         </Grid>
         <Grid x:Name="SelectWindow">

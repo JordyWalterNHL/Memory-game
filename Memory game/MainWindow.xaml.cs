@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 
@@ -202,12 +192,15 @@ namespace Memory_game
                         keyList[i] = temp;
                     }
                 }
-                Score1.Text = highscores[keyList[0]] + " - " + keyList[0];
-                Score2.Text = highscores[keyList[1]] + " - " + keyList[1];
-                Score3.Text = highscores[keyList[2]] + " - " + keyList[2];
-                Score4.Text = highscores[keyList[3]] + " - " + keyList[3];
-                Score5.Text = highscores[keyList[4]] + " - " + keyList[4];
-                Score6.Text = highscores[keyList[5]] + " - " + keyList[5];
+            }
+            for (int k = 0; k < 6; k++)
+            {
+                Viewbox viewbox = new Viewbox();
+                TextBlock text = new TextBlock();
+                viewbox.SetValue(Grid.RowProperty, k);
+                text.Text = highscores[keyList[k]] + " - " + keyList[k];
+                viewbox.Child = text;
+                HighScores.Children.Add(viewbox);
             }
         }
     }
