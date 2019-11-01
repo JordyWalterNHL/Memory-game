@@ -103,4 +103,12 @@ namespace Memory_game
             playerTurn.Text = "It's " + name + "'s turn!";
         }
     }
+    static void save()
+    {
+        using (StreamWriter writer = new StreamWriter("sav001.sav"))
+        {
+            writer.Write(PlayerData);
+            writer.WriteLine(Players);
+            writer.WriteLine("Do not edit saves.");
+            }
 }
