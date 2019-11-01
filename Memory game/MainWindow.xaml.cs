@@ -25,13 +25,22 @@ namespace Memory_game
     {
         private int timer = 0;
         DispatcherTimer dt = new DispatcherTimer();
-
+        private Dictionary<int,string> highscores = new Dictionary<int,string>()
+        {
+            {2, "2"},
+            {8, "8"},
+            {7, "7"},
+            {3, "3"},
+            {4, "4"}
+        };
+                
         MemoryGrid memoryGrid;
         string name1, name2;
         
         public MainWindow()
         {
             InitializeComponent();
+            SortScores();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
             ExtraWindow.Visibility = Visibility.Collapsed;
@@ -67,10 +76,8 @@ namespace Memory_game
         {
             name1 = Name1.Text;
             name2 = Name2.Text;
-            if (!String.IsNullOrEmpty(name1))
+            if (!String.IsNullOrEmpty(name1) && !String.IsNullOrEmpty(name2))
             {
-                if (!String.IsNullOrEmpty(name2))
-                {
                     int index = GridSelection.SelectedIndex;
                     int rows = 4;
                     int cols = 4;
@@ -128,16 +135,6 @@ namespace Memory_game
                         dt.Interval = TimeSpan.FromSeconds(1);
                         dt.Tick += dtTicker;
                         dt.Start();
-
-                    }
-                    else
-                    {
-                        PlayerWarningBox2.Visibility = Visibility.Visible;
-                        Task.Delay(4000).ContinueWith(_ =>
-                        {
-                            PlayerWarningBox2.Visibility = Visibility.Collapsed;
-                        }, TaskScheduler.FromCurrentSynchronizationContext());
-                    }
                 }
                 else
                 {
@@ -186,6 +183,28 @@ namespace Memory_game
             if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
             {
                 dt.Stop();
+            }
+        }
+        private void SortScores()
+        {
+            List<int> keyList = new List<int>(highscores.Keys);
+            int temp;
+            for (int j = 0; j <= keyList.Count - 2; j++)
+            {
+                for (int i = 0; i <= highscores.Keys.Count - 2; i++)
+                {
+                    if (keyList[i] < keyList[i + 1])
+                    {
+                        temp = keyList[i + 1];
+                        keyList[i + 1] = keyList[i];
+                        keyList[i] = temp;
+                    }
+                }
+                Score1.Text = highscores[keyList[0]];
+                Score2.Text = highscores[keyList[1]];
+                Score3.Text = highscores[keyList[2]];
+                Score4.Text = highscores[keyList[3]];
+                Score5.Text = highscores[keyList[4]];
             }
         }
     }
