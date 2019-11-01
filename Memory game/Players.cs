@@ -14,7 +14,6 @@ namespace Memory_game
         private bool playerTwo;
         Grid playerTurnColor;
         private string winner;
-        private string winneris;
         public PlayerData CurrentPlayer
         {
             get
@@ -68,17 +67,17 @@ namespace Memory_game
             int two = players[1].FetchMemory();
             if (one > two)
             {
-                winner = players[0].FetchName();
+                winner = ("The winner is: ") + players[0].FetchName();
                 return one;
             }
             else if (one < two)
             {
-                winner = players[1].FetchName();
+                winner = ("The winner is: ") + players[1].FetchName();
                 return two;
             }
             else
             {
-                winner = ("");
+                winner = ("It's a draw!");
                 return one;
             }
         }

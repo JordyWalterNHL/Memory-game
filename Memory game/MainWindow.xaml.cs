@@ -178,7 +178,7 @@ namespace Memory_game
 
             TimerLabel.Text = timer.ToString();
 
-            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
+            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 2)
             {
                 dt.Stop();
                 Winner();
