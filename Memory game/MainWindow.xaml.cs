@@ -37,7 +37,8 @@ namespace Memory_game
             SortScores();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
-            ExtraWindow.Visibility = Visibility.Collapsed;          
+            ExtraWindow.Visibility = Visibility.Collapsed;    
+            EndWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Handles the reset button click 
