@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memory_game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Icon="/Images/Bicycles/CardBack.png"
+        Title="Memory Game"
+        WindowState="Maximized"
         Style="{StaticResource ChunkFive}">
-    <Grid Margin="4,0,-4.4,0">
+    <Grid Margin="0,0,0,0" x:Name="ParentGrid">
         <Grid x:Name="MainMenu">
             <Grid.Background>
                 <ImageBrush ImageSource="Back.jpg" Stretch="Fill"></ImageBrush>
@@ -17,34 +19,34 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Column="0" Grid.Row="0">
                 <Viewbox VerticalAlignment="Top" Margin="5,5,40,0">
-                    <TextBlock FontSize="60px">Memory</TextBlock>
+                    <TextBlock FontSize="50px">Memory</TextBlock>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="1">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
+                <Viewbox HorizontalAlignment="Left" Margin="5,0,0,0">
                     <Button Click="PlayButtonClick" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                        <TextBlock FontSize="20px">Play</TextBlock>
+                        <TextBlock FontSize="8px">Play</TextBlock>
                     </Button>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="2">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
+                <Viewbox HorizontalAlignment="Left" Margin="5,0,0,0">
                     <Button Click="ExtraButtonClick" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock FontSize="30px">Extras</TextBlock>
+                        <TextBlock FontSize="8px">Extras</TextBlock>
                     </Button>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="3">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,40,5">
+                <Viewbox HorizontalAlignment="Left" Margin="5,0,0,5">
                     <Button Click="ExitButtonClick" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <TextBlock FontSize="40px">Exit Game</TextBlock>
+                        <TextBlock FontSize="8px">Exit Game</TextBlock>
                     </Button>
                 </Viewbox>
             </Grid>
@@ -53,20 +55,63 @@
                     <TextBlock FontSize="50px">High Scores!</TextBlock>
                 </Viewbox>
             </Grid>
+            <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Viewbox>
+                        <TextBlock x:Name="Score1">hoi</TextBlock>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Viewbox>
+                        <TextBlock x:Name="Score2">doei</TextBlock>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Viewbox>
+                        <TextBlock x:Name="Score3">banaan</TextBlock>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Viewbox>
+                        <TextBlock x:Name="Score4">aardappel</TextBlock>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Viewbox>
+                        <TextBlock x:Name="Score5">aardappel</TextBlock>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Viewbox>
+                        <TextBlock x:Name="Score6">aardappel</TextBlock>
+                    </Viewbox>
+                </Grid>
+            </Grid>
         </Grid>
         <Grid x:Name="SelectWindow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.Background>
@@ -77,36 +122,162 @@
                     <TextBlock FontSize="40px">Memory</TextBlock>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="1">
+            <Grid x:Name="PlayerWarningBox" Grid.Column="2" Grid.Row="1" Visibility="Collapsed">
                 <Viewbox VerticalAlignment="Top">
-                    <TextBlock x:Name="PlayerWarningBox" FontSize="20px" Foreground="Red"/>
+                    <TextBlock FontSize="20px" Foreground="Red" Text="Please enter two names!"/>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="5">
+            <Grid x:Name="PlayerWarningBox2" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Visibility="Collapsed">
+                <Viewbox VerticalAlignment="Top">
+                    <TextBlock FontSize="20px" Foreground="Red" Text="This theme doesn't support that much cards, please select less, or another theme"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Names</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Name 1:</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="3">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBox x:Name="Name1" FontSize="8px" Width="64"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="4">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Name 2:</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="4">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBox x:Name="Name2" FontSize="8px" Width="64"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="2">
+                <Viewbox Margin="5,0,5,0">
+                    <TextBlock FontSize="12px">Grid</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="3">
+                <Viewbox >
+                    <StackPanel>
+                        <ComboBox x:Name="GridSelection" FontSize="8px">
+                            <ComboBoxItem IsSelected="True">
+                                <TextBlock>4x4</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>4x5</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>4x6</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>5x6</TextBlock>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock>6x6</TextBlock>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8">
                 <Viewbox Margin="0,0,0,10">
                     <Button Click="SelectWindowPlay" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0">
                         <TextBlock FontSize="30px">Play</TextBlock>
                     </Button>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="0" Grid.Row="2">
-                <Viewbox Margin="0,0,5,0">
-                    <TextBlock FontSize="12px">Name 1:</TextBlock>
+        </Grid>
+        <Grid x:Name="ExtraWindow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="Back.jpg" Stretch="Fill"></ImageBrush>
+            </Grid.Background>
+            <Grid Grid.ColumnSpan="3">
+                <Viewbox>
+                    <TextBlock FontSize="40px">Extras</TextBlock>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
-                <Viewbox Margin="5,0,0,0">
-                    <TextBox x:Name="Name1" FontSize="8px" Width="64"/>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="20px">Themes</TextBlock>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="0" Grid.Row="3">
-                <Viewbox Margin="0,0,5,0">
-                    <TextBlock FontSize="12px">Name 2:</TextBlock>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="5,0,5,0">
+                <StackPanel>
+                    <ComboBox x:Name="ThemeSelection" FontSize="40px">
+                        <ComboBoxItem IsSelected="True">
+                            <TextBlock>Bicycles</TextBlock>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock>Halloween</TextBlock>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock>Thanksgiving</TextBlock>
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="1" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="20px">Groep 3</TextBlock>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="3">
-                <Viewbox Margin="5,0,0,0">
-                    <TextBox x:Name="Name2" FontSize="8px" Width="64"/>
+            <Grid Grid.Column="2" Grid.Row="2" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="5px">Jordy Walter</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="3" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="5px">Jordy Walter</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="4" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="5px">Hylke van der Zee</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="5" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="5px">Jort Deutekom</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="6" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="5px">Berber Bouma</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="7" Margin="5,0,5,0">
+                <Viewbox>
+                    <TextBlock FontSize="5px">David ruiter</TextBlock>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="8">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5">
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="ExtraHomeButtonClick">
+                        <Image Source="Images/home.png"/>
+                    </Button>
                 </Viewbox>
             </Grid>
         </Grid>
@@ -125,31 +296,28 @@
             <Grid.Background>
                 <ImageBrush ImageSource="Back.jpg" Stretch="Fill"></ImageBrush>
             </Grid.Background>
-            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Background="Blue" Opacity="0.4"/>
-            <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Background="Red" Opacity="0.4">
-                <Button x:Name="Save" Content="Save" HorizontalAlignment="Right" Margin="0,0,0,63" VerticalAlignment="Bottom" Width="75" Click="Save_Click"/>
-                <Button x:Name="Load" Content="Load" HorizontalAlignment="Right" Margin="0,0,0,40" VerticalAlignment="Bottom" Width="75" Click="Load_Click"/>
-            </Grid>
+            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Background="Blue" Opacity="0.4"/>
+            <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" Background="Red" Opacity="0.4"/>
             <Grid x:Name="PlayerTurnColor" Grid.Column="1" Grid.Row="0" Opacity="0.4"/>
             <Grid x:Name="GameGrid" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3"/>
 
             <Grid Grid.Column="0" Grid.Row="0">
-                <Viewbox HorizontalAlignment="Left" Margin="10,0,0,0">
+                <Viewbox HorizontalAlignment="Left" Margin="10,0,5,0">
                     <TextBlock x:Name="NameOne" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="1">
-                <Viewbox HorizontalAlignment="Left" Margin="10,0,0,0">
+                <Viewbox HorizontalAlignment="Left" Margin="10,0,5,0">
                     <TextBlock x:Name="ScoreOne" FontSize="20px" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="2" Grid.Row="0">
-                <Viewbox HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Viewbox HorizontalAlignment="Right" Margin="5,0,10,0">
                     <TextBlock x:Name="NameTwo" FontSize="20px" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="2" Grid.Row="1">
-                <Viewbox HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Viewbox HorizontalAlignment="Right" Margin="5,0,10,0">
                     <TextBlock x:Name="ScoreTwo" FontSize="20px" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
@@ -158,12 +326,33 @@
                     <TextBlock x:Name="PlayerTurn" FontSize="20px" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="3">
+            <Grid Grid.Column="2" Grid.Row="4">
                 <Viewbox HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5">
                     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="ResetButtonClick">
                         <Image Source="Images/reset.png"></Image>
                     </Button>
                 </Viewbox>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="4">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5">
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
+                        <Image Source="Images/home.png"></Image>
+                    </Button>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="2">
+                    <Viewbox HorizontalAlignment="Right" Margin="0,0,10,0">
+                        <TextBlock Name="TimerLabel" Text="0" FontSize="20px"/>
+                    </Viewbox>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

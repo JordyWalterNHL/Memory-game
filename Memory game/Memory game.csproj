@@ -100,27 +100,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bicycles\1.png" />
+    <Resource Include="Images\Bicycles\2.png" />
+    <Resource Include="Images\Bicycles\3.png" />
+    <Resource Include="Images\Bicycles\4.png" />
+    <Resource Include="Images\Bicycles\5.png" />
+    <Resource Include="Images\Bicycles\6.png" />
+    <Resource Include="Images\Bicycles\7.png" />
+    <Resource Include="Images\Bicycles\8.png" />
+    <Resource Include="Images\Bicycles\CardBack.png" />
+    <Resource Include="Images\home.png" />
     <Resource Include="Images\reset.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\CardBack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\fiets1.png" />
-    <Resource Include="Images\fiets2.png" />
-    <Resource Include="Images\fiets7.png" />
-    <Resource Include="Images\fiets8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\fiets3.png" />
-    <Resource Include="Images\fiets5.png" />
-    <Resource Include="Images\fiets6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\fiets4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Back.jpg" />
+    <Resource Include="Images\Thanksgiving\1.png" />
+    <Resource Include="Images\Thanksgiving\2.png" />
+    <Resource Include="Images\Thanksgiving\3.png" />
+    <Resource Include="Images\Thanksgiving\4.png" />
+    <Resource Include="Images\Thanksgiving\5.png" />
+    <Resource Include="Images\Thanksgiving\6.png" />
+    <Resource Include="Images\Thanksgiving\7.png" />
+    <Resource Include="Images\Thanksgiving\8.png" />
+    <Resource Include="Images\Thanksgiving\CardBack.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Saves\" />

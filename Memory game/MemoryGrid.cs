@@ -21,6 +21,8 @@ namespace Memory_game
         private bool canClick = true;
         private bool secondClick;
 
+        private string theme;
+
         private List<Image> TurnedCards = new List<Image>();
         //Ordered list of cards
         private List<MemoryCard> GameCards = new List<MemoryCard>();
@@ -34,20 +36,21 @@ namespace Memory_game
             for (int i = 0; i < cardAmount; i++)
             {
                 int imageNumber = i % (cardAmount / 2) + 1;
-                ImageSource source = new BitmapImage(new Uri("Images/fiets" + imageNumber + ".png", UriKind.Relative));
+                ImageSource source = new BitmapImage(new Uri("Images/" + theme + "/" + imageNumber + ".png", UriKind.Relative));
                 images.Add(source);
             }
 
             return images;
         }
 
-        public MemoryGrid(Grid grid1, int rows, int cols, Players player)
+        public MemoryGrid(Grid grid1, int rows, int cols, Players player, string theme)
         {
             grid = grid1;
             this.rows = rows;
             this.colums = cols;
             this.cardAmount = rows * cols;
             this.player = player;
+            this.theme = theme;
 
             CreateGameGrid();
             AddCards();
