@@ -108,8 +108,8 @@ namespace Memory_game
             int i;
             using (StreamWriter writer = new StreamWriter("sav001.sav"))
             {
-                writer.WriteLine(PlayerData.points);
-                writer.WriteLine(PlayerData.DavidSave); ;
+                writer.WriteLine();
+                writer.WriteLine(); ;
                 writer.WriteLine("Do not edit saves.");
             }
             using (var sr = new StreamReader("sav001.sav"))
