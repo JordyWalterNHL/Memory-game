@@ -82,7 +82,7 @@ namespace Memory_game
                     int rows = 4;
                     int cols = 4;
                     int size = 8;
-                    int themeindex = ThemeSelection.SelectedIndex;
+                    int themeindex = ThemeSelection.SelectedIndex; 
                     string theme = "";
                     switch (index)
                     {
@@ -138,10 +138,10 @@ namespace Memory_game
                 }
                 else
                 {
-                    PlayerWarningBox.Visibility = Visibility.Visible;
+                    PlayerWarningBox2.Visibility = Visibility.Visible;
                     Task.Delay(2000).ContinueWith(_ =>
                     {
-                        PlayerWarningBox.Visibility = Visibility.Collapsed;
+                        PlayerWarningBox2.Visibility = Visibility.Collapsed;
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                 }
             }
