@@ -33,7 +33,6 @@ namespace Memory_game
             this.frontSource = frontSource;
             this.id = id;
         }
-
         public ImageSource GetBackSource()
         {
             return backSource;
@@ -45,3 +44,4 @@ namespace Memory_game
         }
     }
 }
+

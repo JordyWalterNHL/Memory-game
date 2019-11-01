@@ -14,6 +14,7 @@ namespace Memory_game
     public partial class MainWindow : Window
     {
         private int timer = 0;
+        private int milliTimer = 0;
         DispatcherTimer dt = new DispatcherTimer();
         private Dictionary<int,string> highscores = new Dictionary<int,string>()
         {
@@ -34,7 +35,7 @@ namespace Memory_game
             SortScores();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
-            ExtraWindow.Visibility = Visibility.Collapsed;
+            ExtraWindow.Visibility = Visibility.Collapsed;          
         }
         /// <summary>
         /// Handles the reset button click 
@@ -44,7 +45,7 @@ namespace Memory_game
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
             memoryGrid.ResetBoard();
-            timer = -1;
+            timer = 0;
             dt.Start();
         }
         private void HomeButtonClick(object sender, RoutedEventArgs e)
@@ -75,6 +76,10 @@ namespace Memory_game
                     int size = 8;
                     int themeindex = ThemeSelection.SelectedIndex; 
                     string theme = "";
+
+                    ImageBrush myBrush = new ImageBrush();
+                    ParentGrid.Background = myBrush;
+
                     switch (index)
                     {
                         case 0:
@@ -110,31 +115,35 @@ namespace Memory_game
                             break;
                         case 1:
                             theme = "Halloween";
+                            size = 18;
                             break;
                         case 2:
                             theme = "Thanksgiving";
                             size = 8;
-                            break;
+                            break;                           
+                       
                     }
                     if ((size*2) >= (rows * cols))
                     {
                         Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
                         memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
+                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
                         SelectWindow.Visibility = Visibility.Collapsed;
                         GameWindow.Visibility = Visibility.Visible;
 
-                        dt.Interval = TimeSpan.FromSeconds(1);
+                        dt.Interval = TimeSpan.FromMilliseconds(50);
                         dt.Tick += dtTicker;
                         dt.Start();
-                }
-                else
-                {
-                    PlayerWarningBox2.Visibility = Visibility.Visible;
-                    Task.Delay(2000).ContinueWith(_ =>
+                    }
+                    else
                     {
-                        PlayerWarningBox2.Visibility = Visibility.Collapsed;
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-                }
+                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/Bicycles/Background.jpg", UriKind.Relative));
+                        PlayerWarningBox2.Visibility = Visibility.Visible;
+                        Task.Delay(2000).ContinueWith(_ =>
+                        {
+                            PlayerWarningBox2.Visibility = Visibility.Collapsed;
+                        }, TaskScheduler.FromCurrentSynchronizationContext());
+                    }
             }
             else
             {
@@ -143,7 +152,7 @@ namespace Memory_game
                 {
                     PlayerWarningBox.Visibility = Visibility.Collapsed;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
-            }
+            }      
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
@@ -159,7 +168,12 @@ namespace Memory_game
         {
             System.Windows.Application.Current.Shutdown();
         }
- 
+        private void PlayHomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Visible;
+            SelectWindow.Visibility = Visibility.Collapsed;
+        }
+
         /// <summary>
         /// Optellende timer
         /// </summary>
@@ -167,7 +181,13 @@ namespace Memory_game
         /// <param name="e"></param>
         private void dtTicker(object sender, EventArgs e)
         {
-            timer++;
+            milliTimer++;
+
+            if (milliTimer >= 9)
+            {
+                timer++;
+                milliTimer = 0;
+            }
 
             TimerLabel.Text = timer.ToString();
 
