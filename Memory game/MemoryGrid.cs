@@ -36,7 +36,7 @@ namespace Memory_game
             for (int i = 0; i < cardAmount; i++)
             {
                 int imageNumber = i % (cardAmount / 2) + 1;
-                ImageSource source = new BitmapImage(new Uri("Images/fiets" + imageNumber + ".png", UriKind.Relative));
+                ImageSource source = new BitmapImage(new Uri("Images/Fiets/fiets" + imageNumber + ".png", UriKind.Relative));
                 images.Add(source);
             }
 

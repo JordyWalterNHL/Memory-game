@@ -102,27 +102,48 @@
     <Resource Include="Images\reset.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\CardBack.png" />
+    <Resource Include="Images\Bicycles\CardBack.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\fiets1.png" />
-    <Resource Include="Images\fiets2.png" />
-    <Resource Include="Images\fiets7.png" />
-    <Resource Include="Images\fiets8.png" />
+    <Resource Include="Images\Bicycles\1.png" />
+    <Resource Include="Images\Bicycles\2.png" />
+    <Resource Include="Images\Bicycles\7.png" />
+    <Resource Include="Images\Bicycles\8.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\fiets3.png" />
-    <Resource Include="Images\fiets5.png" />
-    <Resource Include="Images\fiets6.png" />
+    <Resource Include="Images\Bicycles\3.png" />
+    <Resource Include="Images\Bicycles\5.png" />
+    <Resource Include="Images\Bicycles\6.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\fiets4.png" />
+    <Resource Include="Images\Bicycles\4.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Back.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Halloween\CardBack.png" />
+    <Resource Include="Images\Halloween\1.png" />
+    <Resource Include="Images\Halloween\2.png" />
+    <Resource Include="Images\Halloween\3.png" />
+    <Resource Include="Images\Halloween\4.png" />
+    <Resource Include="Images\Halloween\5.png" />
+    <Resource Include="Images\Halloween\6.png" />
+    <Resource Include="Images\Halloween\7.png" />
+    <Resource Include="Images\Halloween\8.png" />
+    <Resource Include="Images\Halloween\9.png" />
+    <Resource Include="Images\Halloween\10.png" />
+    <Resource Include="Images\Halloween\11.png" />
+    <Resource Include="Images\Halloween\12.png" />
+    <Resource Include="Images\Halloween\13.png" />
+    <Resource Include="Images\Halloween\14.png" />
+    <Resource Include="Images\Halloween\15.png" />
+    <Resource Include="Images\Halloween\16.png" />
+    <Resource Include="Images\Halloween\17.png" />
+    <Resource Include="Images\Halloween\18.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
