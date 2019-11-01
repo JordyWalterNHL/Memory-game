@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,9 @@ namespace Memory_game
 {
     class Players
     {
-        private PlayerData[] players = new PlayerData[2];
+        private readonly PlayerData[] players = new PlayerData[2];
         private bool playerTwo;
-        Grid playerTurnColor;
+        readonly Grid playerTurnColor;
         public PlayerData CurrentPlayer
         {
             get
@@ -64,11 +65,11 @@ namespace Memory_game
 
     class PlayerData
     {
-        private string name;
-        private TextBlock nameBox;
+        private readonly string name;
+        private readonly TextBlock nameBox;
 
         private int memories;
-        private TextBlock scoreBox;
+        private readonly TextBlock scoreBox;
 
         private TextBlock playerTurn;
         private float points;
@@ -102,20 +103,23 @@ namespace Memory_game
         {
             playerTurn.Text = "It's " + name + "'s turn!";
         }
-    }
-    static void save()
-    {
-        using (StreamWriter writer = new StreamWriter("sav001.sav"))
+        static void DavidSave()
         {
-            writer.Write(PlayerData);
-            writer.WriteLine(Players);
-            writer.WriteLine("Do not edit saves.");
+            int i;
+            using (StreamWriter writer = new StreamWriter("sav001.sav"))
+            {
+                writer.WriteLine(PlayerData.points);
+                writer.WriteLine(PlayerData.DavidSave); ;
+                writer.WriteLine("Do not edit saves.");
             }
-        using (var sr = new StreamReader("sav001.sav"))
-        {
-            string line;
-                while ((line = sr.ReadLine()) != null) 
-                {    var columns = line.Split(new char[] {':'});}}
+            using (var sr = new StreamReader("sav001.sav"))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                { var columns = line.Split(new char[] { ':' }); }
+            }
 
+        }
     }
+
 }
