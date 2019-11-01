@@ -33,6 +33,7 @@ namespace Memory_game
             InitializeComponent();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
+            EndWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Handles the reset button click 
@@ -103,6 +104,7 @@ namespace Memory_game
                     memoryGrid = new MemoryGrid(GameGrid, rows, cols, players);
                     SelectWindow.Visibility = Visibility.Collapsed;
                     GameWindow.Visibility = Visibility.Visible;
+                    EndWindow.Visibility = Visibility.Collapsed;
 
                     dt.Interval = TimeSpan.FromSeconds(1);
                     dt.Tick += dtTicker;
@@ -135,7 +137,6 @@ namespace Memory_game
         {
             System.Windows.Application.Current.Shutdown();
         }
- 
         /// <summary>
         /// Optellende timer
         /// </summary>
