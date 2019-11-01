@@ -34,7 +34,7 @@ namespace Memory_game
             InitializeComponent();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
-            ExtraWindow.Visibility = Visibility.Collapsed;
+            ExtraWindow.Visibility = Visibility.Collapsed;          
         }
         /// <summary>
         /// Handles the reset button click 
@@ -77,6 +77,10 @@ namespace Memory_game
                     int size = 8;
                     int themeindex = ThemeSelection.SelectedIndex;
                     string theme = "";
+
+                    ImageBrush myBrush = new ImageBrush();
+                    ParentGrid.Background = myBrush;
+
                     switch (index)
                     {
                         case 0:
@@ -109,14 +113,22 @@ namespace Memory_game
                         case 0:
                             theme = "Bicycles";
                             size = 8;
+                            myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
+                            this.UpdateLayout();
                             break;
                         case 1:
                             theme = "Halloween";
+                            size = 18;
+                            myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
+                            this.UpdateLayout();
                             break;
                         case 2:
                             theme = "Thanksgiving";
                             size = 8;
-                            break;
+                            myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
+                            this.UpdateLayout();
+                            break;                           
+                       
                     }
                     if ((size*2) >= (rows * cols))
                     {
@@ -155,7 +167,7 @@ namespace Memory_game
                 {
                     PlayerWarningBox.Visibility = Visibility.Collapsed;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
-            }
+            }      
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
@@ -171,7 +183,12 @@ namespace Memory_game
         {
             System.Windows.Application.Current.Shutdown();
         }
- 
+        private void PlayHomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Visible;
+            SelectWindow.Visibility = Visibility.Collapsed;
+        }
+
         /// <summary>
         /// Optellende timer
         /// </summary>
