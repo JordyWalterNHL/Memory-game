@@ -74,6 +74,7 @@ namespace Memory_game
                     int index = GridSelection.SelectedIndex;
                     int rows = 4;
                     int cols = 4;
+                    int size = 8;
                     int themeindex = ThemeSelection.SelectedIndex;
                     string theme = "";
                     switch (index)
@@ -107,24 +108,36 @@ namespace Memory_game
                     {
                         case 0:
                             theme = "Bicycles";
+                            size = 8;
                             break;
                         case 1:
                             theme = "Halloween";
                             break;
                         case 2:
                             theme = "Thanksgiving";
+                            size = 8;
                             break;
                     }
-                    int filecount = Directory.GetFiles("Images/" + theme).Length;
-                    Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
-                    memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
-                    SelectWindow.Visibility = Visibility.Collapsed;
-                    GameWindow.Visibility = Visibility.Visible;
+                    if ((size*2) >= (rows * cols))
+                    {
+                        Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
+                        memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
+                        SelectWindow.Visibility = Visibility.Collapsed;
+                        GameWindow.Visibility = Visibility.Visible;
 
-                    dt.Interval = TimeSpan.FromSeconds(1);
-                    dt.Tick += dtTicker;
-                    dt.Start();
+                        dt.Interval = TimeSpan.FromSeconds(1);
+                        dt.Tick += dtTicker;
+                        dt.Start();
 
+                    }
+                    else
+                    {
+                        PlayerWarningBox2.Visibility = Visibility.Visible;
+                        Task.Delay(4000).ContinueWith(_ =>
+                        {
+                            PlayerWarningBox2.Visibility = Visibility.Collapsed;
+                        }, TaskScheduler.FromCurrentSynchronizationContext());
+                    }
                 }
                 else
                 {

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Memory_game"
         mc:Ignorable="d"
         Icon="/Images/Bicycles/CardBack.png"
-        Title="Memory Game" Height="450" Width="800" 
+        Title="Memory Game"
+        WindowState="Maximized"
         Style="{StaticResource ChunkFive}">
     <Grid Margin="0,0,0,0">
         <Grid x:Name="MainMenu">
@@ -84,6 +85,11 @@
             <Grid x:Name="PlayerWarningBox" Grid.Column="2" Grid.Row="1" Visibility="Collapsed">
                 <Viewbox VerticalAlignment="Top">
                     <TextBlock FontSize="20px" Foreground="Red" Text="Please enter two names!"/>
+                </Viewbox>
+            </Grid>
+            <Grid x:Name="PlayerWarningBox2" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Visibility="Collapsed">
+                <Viewbox VerticalAlignment="Top">
+                    <TextBlock FontSize="20px" Foreground="Red" Text="This theme doesn't support that much cards, please select less, or another theme"/>
                 </Viewbox>
             </Grid>
             <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
