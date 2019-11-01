@@ -38,11 +38,13 @@ namespace Memory_game
         {
             memoryGrid.ResetBoard();
         }
+
         private void PlayButtonClick(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Collapsed;
             SelectWindow.Visibility = Visibility.Visible;
         }
+
         private void SelectWindowPlay(object sender, RoutedEventArgs e)
         {
             name1 = Name1.Text;
@@ -61,10 +63,22 @@ namespace Memory_game
             }
             else { PlayerWarningBox.Text = "Please put in two names!"; }
         }
+
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
 
         }
+
+        private void Load_Click(object sender, RoutedEventArgs e)
+        {
+            memoryGrid.LoadGame();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            memoryGrid.SaveGame();
+        }
+
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();

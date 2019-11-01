@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Memory_game
 {
@@ -29,7 +22,12 @@ namespace Memory_game
         private bool secondClick;
 
         private List<Image> TurnedCards = new List<Image>();
+        //Ordered list of cards
         private List<MemoryCard> GameCards = new List<MemoryCard>();
+        //Shuffled list of cards
+        private List<MemoryCard> MemoryCards = new List<MemoryCard>();
+
+
         private List<ImageSource> GetImageSources()
         {
             List<ImageSource> images = new List<ImageSource>();
@@ -86,14 +84,16 @@ namespace Memory_game
                 ImageSource front = images.First();
                 images.RemoveAt(0);
 
-                GameCards.Add(new MemoryCard(front, i)
+                GameCards.Add(new MemoryCard()
                 {
+                    back = "Images/CardBack.png",
+                    front = front.ToString(),
+                    id = i,
                     value = i % (cardAmount / 2) + 1
                 });
             }
 
             //Shuffle list
-            List<MemoryCard> MemoryCards = new List<MemoryCard>();
             List<MemoryCard> GameCardsCopy = new List<MemoryCard>();
             GameCardsCopy.AddRange(GameCards);
 
@@ -129,6 +129,9 @@ namespace Memory_game
                 }
             }
         }
+
+
+
         /// <summary>
         /// Clears grid and Adds new cards
         /// </summary>
@@ -181,6 +184,9 @@ namespace Memory_game
                         TurnedCards[0].Source = null;
                         TurnedCards[1].Source = null;
 
+                        GameCards[firstCardId].beenUsed = true;
+                        GameCards[secondCardId].beenUsed = true;
+
                         player.RightAnswer();
                     }
                     else
@@ -192,7 +198,6 @@ namespace Memory_game
                         GameCards[secondCardId].beenClicked = false;
 
                         player.WrongAnswer();
-
                     }
 
                     TurnedCards.Clear();
@@ -201,6 +206,49 @@ namespace Memory_game
                     canClick = true;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
+        }
+
+        public void LoadGame()
+        {
+            grid.Children.Clear();
+            GameCards.Clear();
+            TurnedCards.Clear();
+            player.ClearMemory();
+            player.SetPlayerOne();
+            canClick = true;
+            secondClick = false;
+
+            LoadCards();
+        }
+
+        private void LoadCards()
+        {
+            GameCards.AddRange(SaveAndLoad.ReadFromBinaryFIle<List<MemoryCard>>());
+
+            int cardcount = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < colums; j++)
+                {
+                    Image cardImage = new Image
+                    {
+                        Source = GameCards[cardcount].GetBackSource(),
+                        Tag = GameCards[cardcount].id
+                    };
+
+                    cardcount++;
+                    cardImage.MouseDown += new MouseButtonEventHandler(CustomCardClick);
+
+                    Grid.SetRow(cardImage, i);
+                    Grid.SetColumn(cardImage, j);
+                    grid.Children.Add(cardImage);
+                }
+            }
+        }
+
+        public void SaveGame()
+        {
+            SaveAndLoad.WriteToBinairyFile(GameCards);
         }
     }
 }

@@ -12,36 +12,32 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Memory_game
 {
+    [Serializable]
     class MemoryCard
     {
-        private ImageSource backSource;
-        private ImageSource frontSource;
+        public string back;
+        public string front;
 
         public int id;
         public int value;
 
         public bool beenClicked;
-
-        public MemoryCard(ImageSource frontSource, int id)
-        {
-            this.backSource = new BitmapImage(new Uri("Images/CardBack.png", UriKind.Relative));
-            this.frontSource = frontSource;
-            this.id = id;
-        }
+        public bool beenUsed;
 
         public ImageSource GetBackSource()
         {
-            return backSource;
+            if (beenUsed)
+                return null;
+
+            return new BitmapImage(new Uri(back, UriKind.Relative)); ;
         }
 
         public ImageSource GetFrontSource()
         {
-            return frontSource;
+            return new BitmapImage(new Uri(front, UriKind.Relative)); ;
         }
     }
 }
