@@ -324,5 +324,48 @@
                 </Grid>
             </Grid>
         </Grid>
+        <Grid x:Name="EndWindow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/images/party.jpg" Stretch="Fill"/>
+                </Grid.Background>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
+                    <TextBlock x:Name="WinnerScore" TextAlignment="Left" FontSize="1pt" Height="2" Width="10" Text="TextBlock" Foreground="LightCyan"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,3,5,3">
+                    <TextBlock x:Name="WinnerName" FontSize="10px" TextAlignment="Center" Text="TextBlock" Foreground="LightCyan" />
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="4">
+                <Viewbox HorizontalAlignment="right" VerticalAlignment="Bottom" Margin="2,0,0,1">
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
+                        <Image Source="Images/home.png"/>
+                    </Button>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Viewbox Margin="5,0,5,0" VerticalAlignment="Top">
+                    <TextBlock FontSize="1px" Foreground="LightCyan"><Run Text="Achieved Score:"/></TextBlock>
+            </Viewbox>
+        </Grid>
+        </Grid>
     </Grid>
 </Window>
