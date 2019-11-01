@@ -146,6 +146,14 @@ namespace Memory_game
             secondClick = false;
             AddCards();
         }
+        public int HighestScore()
+        {
+            return player.ReturnHighScore();
+        }
+        public string WinnerName()
+        {
+            return player.ReturnWinnerName();
+        }
 
         /// <summary>
         /// Check if you can click the image, change the image to the front image

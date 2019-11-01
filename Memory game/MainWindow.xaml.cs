@@ -35,6 +35,7 @@ namespace Memory_game
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
             ExtraWindow.Visibility = Visibility.Collapsed;
+            EndWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Handles the reset button click 
@@ -56,6 +57,7 @@ namespace Memory_game
         {
             MainMenu.Visibility = Visibility.Collapsed;
             SelectWindow.Visibility = Visibility.Visible;
+            EndWindow.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -115,7 +117,6 @@ namespace Memory_game
                             theme = "Thanksgiving";
                             break;
                     }
-                    int filecount = Directory.GetFiles("Images/" + theme).Length;
                     Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
                     memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
                     SelectWindow.Visibility = Visibility.Collapsed;
@@ -148,17 +149,24 @@ namespace Memory_game
         {
             MainMenu.Visibility = Visibility.Collapsed;
             ExtraWindow.Visibility = Visibility.Visible;
+            EndWindow.Visibility = Visibility.Collapsed;
         }
         private void ExtraHomeButtonClick(object sender, RoutedEventArgs e)
         {
             ExtraWindow.Visibility = Visibility.Collapsed;
             MainMenu.Visibility = Visibility.Visible;
+            EndWindow.Visibility = Visibility.Collapsed;
         }
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
- 
+        private void Winner()
+        {
+            EndWindow.Visibility = Visibility.Visible;
+            WinnerScore.Text = memoryGrid.HighestScore().ToString();
+            WinnerName.Text = memoryGrid.WinnerName();
+        }
         /// <summary>
         /// Optellende timer
         /// </summary>
@@ -173,6 +181,7 @@ namespace Memory_game
             if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
             {
                 dt.Stop();
+                Winner();
             }
         }
     }

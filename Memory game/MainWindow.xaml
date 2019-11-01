@@ -290,7 +290,7 @@
             </Grid>
             <Grid Grid.Column="0" Grid.Row="4">
                 <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5">
-                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
+                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0">
                         <Image Source="Images/home.png"></Image>
                     </Button>
                 </Viewbox>
@@ -309,45 +309,45 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Column="0" Grid.Row="4">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="2,0,0,1">
-                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
-                        <Image Source="Images/home.png"></Image>
-                    </Button>
-                </Viewbox>
-            </Grid>
             <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4">
                 <Grid.Background>
-                    <ImageBrush ImageSource="/images/party.jpg" Stretch="Fill"></ImageBrush>
+                    <ImageBrush ImageSource="/images/party.jpg" Stretch="Fill"/>
                 </Grid.Background>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
-                <Viewbox Margin="5,0,5,0" VerticalAlignment="Top">
-                    <TextBlock FontSize="12px">The winner is:</TextBlock>
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
+                    <TextBlock x:Name="WinnerScore" FontSize="1pt" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="2" Grid.Row="2">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,10,0">
-                    <TextBlock x:Name="Winner" FontSize="20px" TextAlignment="Center" Text="TextBlock"/>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,7,0,6">
+                    <TextBlock x:Name="WinnerName" FontSize="10px" TextAlignment="Center" Text="TextBlock"/>
                 </Viewbox>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2">
-                <Viewbox Margin="5,0,5,0" VerticalAlignment="Bottom">
-                    <TextBlock FontSize="1px">Achieved Score:</TextBlock>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="2">
-                <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,10,0">
-                <TextBlock x:Name="WinnerScore" FontSize="20px" TextAlignment="Center" Text="TextBlock"/>
+            <Grid Grid.Column="2" Grid.Row="4">
+            <Viewbox HorizontalAlignment="right" VerticalAlignment="Bottom" Margin="2,0,0,1">
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Click="HomeButtonClick">
+                    <Image Source="Images/home.png"/>
+                </Button>
             </Viewbox>
-            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Viewbox Margin="5,0,5,0" VerticalAlignment="Center">
+                <TextBlock FontSize="12px"><Run Text="The winner is:"/></TextBlock>
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Viewbox Margin="5,0,5,0" VerticalAlignment="Top">
+                <TextBlock FontSize="1px"><Run Text="Achieved Score:"/></TextBlock>
+            </Viewbox>
+        </Grid>
         </Grid>
     </Grid>
 </Window>
