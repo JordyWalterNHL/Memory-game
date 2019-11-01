@@ -116,7 +116,7 @@ namespace Memory_game
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
-                { var columns = line.Split(new char[] { ':' }); }
+                { var columns = line.Split(new char[] { ':' });  }
             }
 
         }
