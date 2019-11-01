@@ -196,6 +196,7 @@ namespace Memory_game
             if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
             {
                 dt.Stop();
+                Winner();
             }
         }
         private void SortScores()
@@ -224,6 +225,12 @@ namespace Memory_game
                 viewbox.Child = text;
                 HighScores.Children.Add(viewbox);
             }
+        }
+        private void Winner()
+        {
+            EndWindow.Visibility = Visibility.Visible;
+            WinnerScore.Text = memoryGrid.HighestScore().ToString();
+            WinnerName.Text = memoryGrid.WinnerName();
         }
     }
 }
