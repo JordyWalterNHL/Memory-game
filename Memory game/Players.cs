@@ -71,7 +71,6 @@ namespace Memory_game
         private TextBlock scoreBox;
 
         private TextBlock playerTurn;
-        private float points;
 
         public PlayerData(string playerName, TextBlock nameBox, TextBlock scoreBox, TextBlock playerTurn)
         {

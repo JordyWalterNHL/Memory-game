@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 namespace Memory_game
 {
     [Serializable]
-    class MemoryCard
+    public class MemoryCard
     {
         public string back;
         public string front;

@@ -29,6 +29,9 @@ namespace Memory_game
         //Shuffled list of cards
         private List<MemoryCard> MemoryCards = new List<MemoryCard>();
 
+        //Sort of container used to save all the important information
+        private SaveData SaveData = new SaveData();
+
 
         private List<ImageSource> GetImageSources()
         {
@@ -89,7 +92,7 @@ namespace Memory_game
 
                 GameCards.Add(new MemoryCard()
                 {
-                    back = "Images/CardBack.png",
+                    back = "Images/"+ theme +"/CardBack.png",
                     front = front.ToString(),
                     id = i,
                     value = i % (cardAmount / 2) + 1
@@ -226,7 +229,10 @@ namespace Memory_game
 
         private void LoadCards()
         {
-            GameCards.AddRange(SaveAndLoad.ReadFromBinaryFIle<List<MemoryCard>>());
+            SaveData = SaveAndLoad.ReadFromBinaryFile<SaveData>();
+
+            GameCards = SaveData.GameCards;
+            MemoryCards = SaveData.MemoryCards;
 
             int cardcount = 0;
             for (int i = 0; i < rows; i++)
@@ -235,8 +241,8 @@ namespace Memory_game
                 {
                     Image cardImage = new Image
                     {
-                        Source = GameCards[cardcount].GetBackSource(),
-                        Tag = GameCards[cardcount].id
+                        Source = MemoryCards[cardcount].GetBackSource(),
+                        Tag = MemoryCards[cardcount].id
                     };
 
                     cardcount++;
@@ -251,7 +257,10 @@ namespace Memory_game
 
         public void SaveGame()
         {
-            SaveAndLoad.WriteToBinairyFile(GameCards);
+            SaveData.GameCards = GameCards;
+            SaveData.MemoryCards = MemoryCards;
+
+            SaveAndLoad.WriteToBinairyFile(SaveData);
         }
     }
 }

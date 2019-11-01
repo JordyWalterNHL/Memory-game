@@ -23,7 +23,7 @@ namespace Memory_game
             }
         }
 
-        public static T ReadFromBinaryFIle<T>()
+        public static T ReadFromBinaryFile<T>()
         {
             using(Stream stream = File.Open(path, FileMode.Open))
             {
@@ -31,5 +31,20 @@ namespace Memory_game
                 return (T)binaryFormatter.Deserialize(stream);
             }
         }
+    }
+
+    [Serializable]
+    public class SaveData
+    {
+        public string namePlayerOne;
+        public string namePlayerTwo;
+
+        public int scorePlayerOne;
+        public int scorePlayerTwo;
+
+        public float timer;
+
+        public List<MemoryCard> GameCards;
+        public List<MemoryCard> MemoryCards;
     }
 }
