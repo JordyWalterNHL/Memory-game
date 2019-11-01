@@ -111,4 +111,10 @@ namespace Memory_game
             writer.WriteLine(Players);
             writer.WriteLine("Do not edit saves.");
             }
+        using (var sr = new StreamReader("sav001.sav"))
+        {
+            string line;
+                while ((line = sr.ReadLine()) != null) 
+                {    var columns = line.Split(new char[] {':'});}}
+    }
 }
