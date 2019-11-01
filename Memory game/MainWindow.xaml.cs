@@ -27,11 +27,12 @@ namespace Memory_game
         DispatcherTimer dt = new DispatcherTimer();
         private Dictionary<int,string> highscores = new Dictionary<int,string>()
         {
-            {2, "2"},
-            {8, "8"},
-            {7, "7"},
-            {3, "3"},
-            {4, "4"}
+            {2, "David"},
+            {8, "Hylke"},
+            {7, "Berber"},
+            {3, "Bas"},
+            {4, "Jort"},
+            {5, "Jordy"}
         };
                 
         MemoryGrid memoryGrid;
@@ -188,6 +189,7 @@ namespace Memory_game
         private void SortScores()
         {
             List<int> keyList = new List<int>(highscores.Keys);
+            List<string> valueList = new List<string>();
             int temp;
             for (int j = 0; j <= keyList.Count - 2; j++)
             {
@@ -200,11 +202,12 @@ namespace Memory_game
                         keyList[i] = temp;
                     }
                 }
-                Score1.Text = highscores[keyList[0]];
-                Score2.Text = highscores[keyList[1]];
-                Score3.Text = highscores[keyList[2]];
-                Score4.Text = highscores[keyList[3]];
-                Score5.Text = highscores[keyList[4]];
+                Score1.Text = highscores[keyList[0]] + " - " + keyList[0];
+                Score2.Text = highscores[keyList[1]] + " - " + keyList[1];
+                Score3.Text = highscores[keyList[2]] + " - " + keyList[2];
+                Score4.Text = highscores[keyList[3]] + " - " + keyList[3];
+                Score5.Text = highscores[keyList[4]] + " - " + keyList[4];
+                Score6.Text = highscores[keyList[5]] + " - " + keyList[5];
             }
         }
     }
