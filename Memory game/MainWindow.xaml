@@ -232,10 +232,10 @@
                             <TextBlock>Bicycles  4x4</TextBlock>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock>Halloween  4x4</TextBlock>
+                            <TextBlock>Halloween  6x6</TextBlock>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock>Thanksgiving  6x6</TextBlock>
+                            <TextBlock>Thanksgiving  4x4</TextBlock>
                         </ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
