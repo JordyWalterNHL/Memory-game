@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace Memory_game
             InitializeComponent();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
+            ExtraWindow.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Handles the reset button click 
@@ -72,6 +74,8 @@ namespace Memory_game
                     int index = GridSelection.SelectedIndex;
                     int rows = 4;
                     int cols = 4;
+                    int themeindex = ThemeSelection.SelectedIndex;
+                    string theme = "";
                     switch (index)
                     {
                         case 0:
@@ -99,8 +103,21 @@ namespace Memory_game
                             cols = 4;
                             break;
                     }
+                    switch (themeindex)
+                    {
+                        case 0:
+                            theme = "Bicycles";
+                            break;
+                        case 1:
+                            theme = "Halloween";
+                            break;
+                        case 2:
+                            theme = "Thanksgiving";
+                            break;
+                    }
+                    int filecount = Directory.GetFiles("Images/" + theme).Length;
                     Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
-                    memoryGrid = new MemoryGrid(GameGrid, rows, cols, players);
+                    memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
                     SelectWindow.Visibility = Visibility.Collapsed;
                     GameWindow.Visibility = Visibility.Visible;
 
@@ -129,7 +146,13 @@ namespace Memory_game
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
-
+            MainMenu.Visibility = Visibility.Collapsed;
+            ExtraWindow.Visibility = Visibility.Visible;
+        }
+        private void ExtraHomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            ExtraWindow.Visibility = Visibility.Collapsed;
+            MainMenu.Visibility = Visibility.Visible;
         }
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
