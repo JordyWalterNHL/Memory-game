@@ -215,11 +215,6 @@ namespace Memory_game
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            SaveAndLoad.WriteToBinairyFile("highscore.sav", highscoreData);
-        }
-
         private void SortScores()
         {
             List<int> keyList = new List<int>(highscores.Keys);
