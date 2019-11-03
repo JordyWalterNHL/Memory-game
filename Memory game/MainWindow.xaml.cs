@@ -31,7 +31,6 @@ namespace Memory_game
         
         MemoryGrid memoryGrid;
         private string name1, name2, theme;
-        private int size;
         
         public MainWindow()
         {
