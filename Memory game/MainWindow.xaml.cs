@@ -259,7 +259,7 @@ namespace Memory_game
             {
                 length = 10;
             }
-            for (int i = 0; i < scores.Count; i++)
+            for (int i = 0; i < length; i++)
             {
                 Viewbox viewbox = new Viewbox();
                 TextBlock text = new TextBlock();
