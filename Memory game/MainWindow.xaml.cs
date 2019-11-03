@@ -29,7 +29,8 @@ namespace Memory_game
         };
                 
         MemoryGrid memoryGrid;
-        string name1, name2;
+        private string name1, name2, theme;
+        private int size;
         
         public MainWindow()
         {
@@ -60,6 +61,15 @@ namespace Memory_game
         {
             MainMenu.Visibility = Visibility.Collapsed;
             SelectWindow.Visibility = Visibility.Visible;
+            if (theme == "Halloween")
+            {
+                SelectHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
+            }
+            else
+            {
+                SelectHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
+
+            }
         }
 
         /// <summary>
@@ -76,12 +86,6 @@ namespace Memory_game
                     int index = GridSelection.SelectedIndex;
                     int rows = 4;
                     int cols = 4;
-                    int size = 8;
-                    int themeindex = ThemeSelection.SelectedIndex; 
-                    string theme = "";
-
-                    ImageBrush myBrush = new ImageBrush();
-                    ParentGrid.Background = myBrush;
 
                     switch (index)
                     {
@@ -110,37 +114,34 @@ namespace Memory_game
                             cols = 4;
                             break;
                     }
-                    switch (themeindex)
-                    {
-                        case 0:
-                            theme = "Bicycles";
-                            size = 8;
-                            break;
-                        case 1:
-                            theme = "Halloween";
-                            size = 18;
-                            break;
-                        case 2:
-                            theme = "Thanksgiving";
-                            size = 8;
-                            break;                           
-                       
-                    }
                     if ((size*2) >= (rows * cols))
                     {
                         Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
                         memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
-                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
                         SelectWindow.Visibility = Visibility.Collapsed;
                         GameWindow.Visibility = Visibility.Visible;
 
+                        if (theme == "Halloween")
+                        {
+                            GameHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
+                            
+                            SelectHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
+                            GameReset.Source = new BitmapImage(new Uri("../../Images/Halloween/reset.png", UriKind.Relative));
+                        }
+                        else
+                        {
+                            GameHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
+                            ExtrasHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
+                            SelectHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
+                            GameReset.Source = new BitmapImage(new Uri("../../Images/reset.png", UriKind.Relative));
+
+                         }
                         dt.Interval = TimeSpan.FromMilliseconds(50);
                         dt.Tick += dtTicker;
                         dt.Start();
                     }
                     else
                     {
-                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/Bicycles/Background.jpg", UriKind.Relative));
                         PlayerWarningBox2.Visibility = Visibility.Visible;
                         Task.Delay(2000).ContinueWith(_ =>
                         {
@@ -159,6 +160,14 @@ namespace Memory_game
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
+            if (theme == "Halloween")
+            {
+                ExtrasHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
+            }
+            else
+            {
+                ExtrasHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
+            }
             MainMenu.Visibility = Visibility.Collapsed;
             ExtraWindow.Visibility = Visibility.Visible;
         }
@@ -166,6 +175,50 @@ namespace Memory_game
         {
             ExtraWindow.Visibility = Visibility.Collapsed;
             MainMenu.Visibility = Visibility.Visible;
+        }
+        private void ChangeBackground(object sender, SelectionChangedEventArgs e)
+        {
+
+            int themeindex = ThemeSelection.SelectedIndex;
+            ImageBrush myBrush = new ImageBrush();
+            ParentGrid.Background = myBrush;
+            theme = "";
+
+            switch (themeindex)
+            {
+                case 0:
+                    theme = "Bicycles";
+                    size = 8;
+                    break;
+                case 1:
+                    theme = "Halloween";
+                    size = 18;
+                    break;
+                case 2:
+                    theme = "Thanksgiving";
+                    size = 8;
+                    break;
+            }
+            myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
+
+            if (theme == "Halloween")
+            {
+                BigWindow.Foreground = Brushes.Red;
+                ThemeSelection.Foreground = Brushes.Red;
+                PlayButton.Foreground = Brushes.Red;
+                ExtrasButton.Foreground = Brushes.Red;
+                ExitButton.Foreground = Brushes.Red;
+                SelectPlay.Foreground = Brushes.Red;
+                ExtrasHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
+            }
+            else
+            {
+                BigWindow.Foreground = Brushes.Black;
+                PlayButton.Foreground = Brushes.Black;
+                ExtrasButton.Foreground = Brushes.Black;
+                SelectPlay.Foreground = Brushes.Black;
+                ExitButton.Foreground = Brushes.Black;
+            }
         }
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
