@@ -98,11 +98,11 @@ namespace Memory_game
 
         public void SaveGame(out string nameOne, out int scoreOne, out string nameTwo, out int scoreTwo, out bool turnP2)
         {
-            nameOne = players[0].name;
-            scoreOne = players[0].memories;
+            nameOne = players[0].FetchName();
+            scoreOne = players[0].FetchMemory();
 
-            nameTwo = players[1].name;
-            scoreTwo = players[1].memories;
+            nameTwo = players[1].FetchName();
+            scoreTwo = players[1].FetchMemory();
 
             turnP2 = playerTwo;
         }
@@ -110,10 +110,10 @@ namespace Memory_game
 
     class PlayerData
     {
-        public string name;
+        private string name;
         private TextBlock nameBox;
 
-        public int memories;
+        private int memories;
         private TextBlock scoreBox;
 
         private TextBlock playerTurn;
