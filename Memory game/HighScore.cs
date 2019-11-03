@@ -51,5 +51,13 @@ namespace Memory_game
             name = names[index];
             return name;
         }
+
+        public void AddNewHighscore(string name, int score)
+        {
+            names.Add(name);
+            scores.Add(score);
+
+            //SortScores(List<string> names, List<int> scores);
+        }
     }
 }

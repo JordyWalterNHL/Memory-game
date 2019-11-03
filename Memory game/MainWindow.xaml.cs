@@ -18,12 +18,12 @@ namespace Memory_game
         private int timer = 0;
         private int milliTimer = 0;
         DispatcherTimer dt = new DispatcherTimer();
-        private List<string> names = new List<string>() { 
+        private List<string> names = new List<string>() /*{ 
         "Hylke","David","Berber","Bas","Jort","Jordy","test","test2","test3","test4","test5"
-        };
-        private List<int> scores = new List<int>() { 
+        }*/;
+        private List<int> scores = new List<int>() /* { 
         8,3,7,3,2,4,5,1,1,1,1
-        };
+        }*/;
         private HighScore highscores;
         
         MemoryGrid memoryGrid;
@@ -279,6 +279,9 @@ namespace Memory_game
             EndWindow.Visibility = Visibility.Visible;
             WinnerScore.Text = "The score is: " + memoryGrid.HighestScore().ToString();
             WinnerName.Text = memoryGrid.WinnerName();
+
+            highscores.AddNewHighscore(memoryGrid.WinnerName(), memoryGrid.HighestScore());
+            //TODO: Saving the new highscore
         }
     }
 }
