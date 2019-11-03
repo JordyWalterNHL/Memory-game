@@ -31,6 +31,7 @@ namespace Memory_game
 
         //Sort of container used to save all the important information
         private SaveData SaveData = new SaveData();
+        public int savedTime = 0;
 
 
         private List<ImageSource> GetImageSources()
@@ -224,13 +225,18 @@ namespace Memory_game
             canClick = true;
             secondClick = false;
 
+            SaveData = SaveAndLoad.ReadFromBinaryFile<SaveData>("memory.sav");
+
+            rows = SaveData.rows;
+            colums = SaveData.colums;
+
+            player.LoadGame(SaveData.playerTwo, SaveData.namePlayerOne, SaveData.namePlayerTwo, SaveData.scorePlayerOne, SaveData.scorePlayerTwo);
+            savedTime = SaveData.timer;
             LoadCards();
         }
 
         private void LoadCards()
-        {
-            SaveData = SaveAndLoad.ReadFromBinaryFile<SaveData>();
-
+        { 
             GameCards = SaveData.GameCards;
             MemoryCards = SaveData.MemoryCards;
 
@@ -257,10 +263,21 @@ namespace Memory_game
 
         public void SaveGame()
         {
+            for (int i = 0; i < GameCards.Count; i++)
+            {
+                GameCards[i].beenClicked = GameCards[i].beenUsed;
+            }
+
+            SaveData.rows = rows;
+            SaveData.colums = colums;
+
             SaveData.GameCards = GameCards;
             SaveData.MemoryCards = MemoryCards;
 
-            SaveAndLoad.WriteToBinairyFile(SaveData);
+            player.SaveGame(out SaveData.namePlayerOne, out SaveData.scorePlayerOne, out SaveData.namePlayerTwo, out SaveData.scorePlayerTwo, out SaveData.playerTwo);
+            SaveData.timer = savedTime;
+
+            SaveAndLoad.WriteToBinairyFile("memory.sav", SaveData);
         }
     }
 }

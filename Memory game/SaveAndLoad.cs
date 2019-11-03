@@ -9,23 +9,21 @@ namespace Memory_game
 {
     public static class SaveAndLoad
     {
-        private static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        public static string path = projectDirectory + "/Saves";
+        private static string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+        public static string path = projectDirectory + "/Saves/";
 
-        //private GameData gameData;
-
-        public static void WriteToBinairyFile<T>(T objectToWrite, bool append = false)
+        public static void WriteToBinairyFile<T>(string fileName, T objectToWrite, bool append = false)
         {
-            using (Stream stream = File.Open(path, append ? FileMode.Append : FileMode.Create))
+            using (Stream stream = File.Open(path + fileName, append ? FileMode.Append : FileMode.Create))
             {
                 var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 binaryFormatter.Serialize(stream, objectToWrite);
             }
         }
 
-        public static T ReadFromBinaryFile<T>()
+        public static T ReadFromBinaryFile<T>(string fileName)
         {
-            using(Stream stream = File.Open(path, FileMode.Open))
+            using(Stream stream = File.Open(path + fileName, FileMode.Open))
             {
                 var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 return (T)binaryFormatter.Deserialize(stream);
@@ -42,7 +40,11 @@ namespace Memory_game
         public int scorePlayerOne;
         public int scorePlayerTwo;
 
-        public float timer;
+        public int rows;
+        public int colums;
+
+        public int timer;
+        public bool playerTwo;
 
         public List<MemoryCard> GameCards;
         public List<MemoryCard> MemoryCards;

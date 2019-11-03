@@ -25,6 +25,8 @@ namespace Memory_game
     {
         private int timer = 0;
         DispatcherTimer dt = new DispatcherTimer();
+
+        private HighscoreData highscoreData = new HighscoreData();
         private Dictionary<int,string> highscores = new Dictionary<int,string>()
         {
             {2, "David"},
@@ -46,6 +48,7 @@ namespace Memory_game
             GameWindow.Visibility = Visibility.Collapsed;
             ExtraWindow.Visibility = Visibility.Collapsed;
         }
+
         /// <summary>
         /// Handles the reset button click 
         /// </summary>
@@ -53,12 +56,23 @@ namespace Memory_game
         /// <param name="e"></param>
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
+            //memoryGrid.LoadGame();
+            //timer = memoryGrid.savedTime - 1;
+            //dt.Start();
+
+            //return;
+
             memoryGrid.ResetBoard();
             timer = -1;
             dt.Start();
         }
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
+            //memoryGrid.savedTime = timer;
+            //memoryGrid.SaveGame();
+
+            //return;
+
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
@@ -186,6 +200,12 @@ namespace Memory_game
                 dt.Stop();
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveAndLoad.WriteToBinairyFile("highscore.sav", highscoreData);
+        }
+
         private void SortScores()
         {
             List<int> keyList = new List<int>(highscores.Keys);

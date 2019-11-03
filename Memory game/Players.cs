@@ -60,14 +60,34 @@ namespace Memory_game
             CurrentPlayer.SetPlayerTurn();
             playerTurnColor.Background = new SolidColorBrush(Colors.Blue);
         }
+
+        public void LoadGame(bool turnP1, string name1, string name2, int score1, int score2)
+        {
+            players[0].LoadPlayer(name1, score1);
+            players[1].LoadPlayer(name2, score2);
+
+            playerTwo = !turnP1;
+            WrongAnswer();
+        }
+
+        public void SaveGame(out string nameOne, out int scoreOne, out string nameTwo, out int scoreTwo, out bool turnP2)
+        {
+            nameOne = players[0].name;
+            scoreOne = players[0].memories;
+
+            nameTwo = players[1].name;
+            scoreTwo = players[1].memories;
+
+            turnP2 = playerTwo;
+        }
     }
 
     class PlayerData
     {
-        private string name;
+        public string name;
         private TextBlock nameBox;
 
-        private int memories;
+        public int memories;
         private TextBlock scoreBox;
 
         private TextBlock playerTurn;
@@ -100,6 +120,14 @@ namespace Memory_game
         public void SetPlayerTurn()
         {
             playerTurn.Text = "It's " + name + "'s turn!";
+        }
+
+        public void LoadPlayer(string name, int score)
+        {
+            this.name = name;
+            this.memories = score;
+
+            UpdateUI();
         }
     }
 }
