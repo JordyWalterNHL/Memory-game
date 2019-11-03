@@ -22,7 +22,6 @@ namespace Memory_game
         private int cols = 4;
         DispatcherTimer dt = new DispatcherTimer();
 
-        private HighscoreData highscoreData = new HighscoreData();
         private Dictionary<int,string> highscores = new Dictionary<int,string>()
         {
             {2, "David"},
