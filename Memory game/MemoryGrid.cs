@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Memory_game
 {
+    /// <summary>
+    /// Makes the field and has most of the logic of the game to make it run smooth
+    /// </summary>
     class MemoryGrid
     {
         private Grid grid;
@@ -30,21 +26,50 @@ namespace Memory_game
 
         private string theme;
 
+        /// <summary>
+        /// List used to keep track of the cards that you turned (max 2)
+        /// </summary>
         private List<Image> TurnedCards = new List<Image>();
+        /// <summary>
+        /// Ordered list of all the cards
+        /// </summary>
         private List<MemoryCard> GameCards = new List<MemoryCard>();
-        private List<ImageSource> GetImageSources()
+        /// <summary>
+        /// Shuffled list of all the cards
+        /// </summary>
+        private List<MemoryCard> MemoryCards = new List<MemoryCard>();
+
+        /// <summary>
+        /// Container used to save all the important information, used to save/load the game
+        /// </summary>
+        private SaveData SaveData = new SaveData();
+        public int savedTime = 0;
+
+        /// <summary>
+        /// Set all the images with the right theme so you can use them
+        /// </summary>
+        /// <returns>List with strings, the route to the image</returns>
+        private List<string> GetImageSources()
         {
-            List<ImageSource> images = new List<ImageSource>();
+            List<string> imageSources = new List<string>();
             for (int i = 0; i < cardAmount; i++)
             {
                 int imageNumber = i % (cardAmount / 2) + 1;
-                ImageSource source = new BitmapImage(new Uri("Images/" + theme + "/" + imageNumber + ".png", UriKind.Relative));
-                images.Add(source);
+                string sourceString = "Images/" + theme + "/" + imageNumber + ".png";
+                imageSources.Add(sourceString);
             }
 
-            return images;
+            return imageSources;
         }
 
+        /// <summary>
+        /// Constructor to make the field
+        /// </summary>
+        /// <param name="grid1">Play area</param>
+        /// <param name="rows">Amount of rows on the playing field</param>
+        /// <param name="cols">Amount of colums on the playing field</param>
+        /// <param name="player">Reference to all the information of the players</param>
+        /// <param name="theme">Name of the theme you are using</param>
         public MemoryGrid(Grid grid1, int rows, int cols, Players player, string theme)
         {
             grid = grid1;
@@ -82,21 +107,22 @@ namespace Memory_game
         /// </summary>
         private void AddCards()
         {
-            List<ImageSource> images = GetImageSources();
             //Add cards to list
+            List<string> imageSources = GetImageSources();
             for (int i = 0; i < cardAmount; i++)
             {
-                ImageSource front = images.First();
-                images.RemoveAt(0);
-
-                GameCards.Add(new MemoryCard(front, i, theme)
+                GameCards.Add(new MemoryCard()
                 {
+                    back = "Images/" + theme + "/CardBack.png",
+                    front = imageSources.First(),
+                    id = i,
                     value = i % (cardAmount / 2) + 1
                 });
+
+                imageSources.RemoveAt(0);
             }
 
             //Shuffle list
-            List<MemoryCard> MemoryCards = new List<MemoryCard>();
             List<MemoryCard> GameCardsCopy = new List<MemoryCard>();
             GameCardsCopy.AddRange(GameCards);
 
@@ -111,7 +137,7 @@ namespace Memory_game
 
             int cardCount = 0;
 
-            //display cards
+            //Display cards
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < colums; j++)
@@ -132,6 +158,9 @@ namespace Memory_game
                 }
             }
         }
+
+
+
         /// <summary>
         /// Clears grid and Adds new cards
         /// </summary>
@@ -171,6 +200,7 @@ namespace Memory_game
             if (GameCards[cardId].beenClicked)
                 return;
 
+            ///Make it so you can't press the same image twice, set a new image and add the card to the pressed cards list
             GameCards[cardId].beenClicked = true;
             card.Source = GameCards[cardId].GetFrontSource();
             TurnedCards.Add(card);
@@ -184,17 +214,21 @@ namespace Memory_game
             {
                 canClick = false;
                 secondCardId = cardId;
+
+                ///Start delay, so you can watch the card, check if the 2 cards are the same and act accordingly
                 Task.Delay(500).ContinueWith(_ =>
                 {
                     if (GameCards[firstCardId].value == GameCards[secondCardId].value)
                     {
-                        //TODO: Actions after you get a combination
                         TurnedCards[0].Source = null;
                         TurnedCards[1].Source = null;
 
+                        GameCards[firstCardId].beenUsed = true;
+                        GameCards[secondCardId].beenUsed = true;
+
                         player.RightAnswer();
                     }
-                    else
+                    else ///Reset the cards you just pressed, start other players turn
                     {
                         TurnedCards[0].Source = GameCards[firstCardId].GetBackSource();
                         TurnedCards[1].Source = GameCards[secondCardId].GetBackSource();
@@ -203,7 +237,6 @@ namespace Memory_game
                         GameCards[secondCardId].beenClicked = false;
 
                         player.WrongAnswer();
-
                     }
 
                     TurnedCards.Clear();
@@ -212,6 +245,84 @@ namespace Memory_game
                     canClick = true;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
+        }
+
+        /// <summary>
+        /// Reset everything so you can use it again,
+        /// Load the savefile with the right data,
+        /// Set all the values with the data from the save file 
+        /// </summary>
+        public void LoadGame()
+        {
+            grid.Children.Clear();
+            GameCards.Clear();
+            TurnedCards.Clear();
+            player.ClearMemory();
+            player.SetPlayerOne();
+            canClick = true;
+            secondClick = false;
+
+            SaveData = SaveAndLoad.ReadFromBinaryFile<SaveData>("memory.sav");
+
+            rows = SaveData.rows;
+            colums = SaveData.colums;
+
+            player.LoadGame(SaveData.playerTwo, SaveData.namePlayerOne, SaveData.namePlayerTwo, SaveData.scorePlayerOne, SaveData.scorePlayerTwo);
+            savedTime = SaveData.timer;
+            LoadCards();
+        }
+
+        /// <summary>
+        /// Load the cards from the save file, and display them on the screen
+        /// </summary>
+        private void LoadCards()
+        { 
+            GameCards = SaveData.GameCards;
+            MemoryCards = SaveData.MemoryCards;
+
+            int cardcount = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < colums; j++)
+                {
+                    Image cardImage = new Image
+                    {
+                        Source = MemoryCards[cardcount].GetBackSource(),
+                        Tag = MemoryCards[cardcount].id
+                    };
+
+                    cardcount++;
+                    cardImage.MouseDown += new MouseButtonEventHandler(CustomCardClick);
+
+                    Grid.SetRow(cardImage, i);
+                    Grid.SetColumn(cardImage, j);
+                    grid.Children.Add(cardImage);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reset the been clicked bool for every card that isn't a pair yet (otherwise you won't be able to click that card again, if you've only clicked one card and then saved)
+        /// Save the rows, colums, current cards, order in which the cards are shuffled and all the player information
+        /// Write this to the save file
+        /// </summary>
+        public void SaveGame()
+        {
+            for (int i = 0; i < GameCards.Count; i++)
+            {
+                GameCards[i].beenClicked = GameCards[i].beenUsed;
+            }
+
+            SaveData.rows = rows;
+            SaveData.colums = colums;
+
+            SaveData.GameCards = GameCards;
+            SaveData.MemoryCards = MemoryCards;
+
+            player.SaveGame(out SaveData.namePlayerOne, out SaveData.scorePlayerOne, out SaveData.namePlayerTwo, out SaveData.scorePlayerTwo, out SaveData.playerTwo);
+            SaveData.timer = savedTime;
+
+            SaveAndLoad.WriteToBinairyFile("memory.sav", SaveData);
         }
     }
 }
