@@ -58,14 +58,6 @@
                 </Viewbox>
             </Grid>
             <Grid x:Name="HighScores" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
             </Grid>
         </Grid>
         <Grid x:Name="SelectWindow">

@@ -18,22 +18,21 @@ namespace Memory_game
         private int timer = 0;
         private int milliTimer = 0;
         DispatcherTimer dt = new DispatcherTimer();
-        private Dictionary<int,string> highscores = new Dictionary<int,string>()
-        {
-            {2, "David"},
-            {8, "Hylke"},
-            {7, "Berber"},
-            {3, "Bas"},
-            {4, "Jort"},
-            {5, "Jordy"}
+        private List<string> names = new List<string>() { 
+        "Hylke","David","Berber","Bas","Jort","Jordy","test","test2","test3","test4","test5"
         };
-                
+        private List<int> scores = new List<int>() { 
+        8,3,7,3,2,4,5,1,1,1,1
+        };
+        private HighScore highscores;
+        
         MemoryGrid memoryGrid;
         private string name1, name2, theme;
         private int size;
         
         public MainWindow()
         {
+            highscores = new HighScore(names, scores);
             InitializeComponent();
             SortScores();
             SelectWindow.Visibility = Visibility.Collapsed;
@@ -255,27 +254,22 @@ namespace Memory_game
         }
         private void SortScores()
         {
-            List<int> keyList = new List<int>(highscores.Keys);
-            List<string> valueList = new List<string>();
-            int temp;
-            for (int j = 0; j <= keyList.Count - 2; j++)
+            int length = scores.Count;
+            if (length>10)
             {
-                for (int i = 0; i <= highscores.Keys.Count - 2; i++)
-                {
-                    if (keyList[i] < keyList[i + 1])
-                    {
-                        temp = keyList[i + 1];
-                        keyList[i + 1] = keyList[i];
-                        keyList[i] = temp;
-                    }
-                }
+                length = 10;
             }
-            for (int k = 0; k < 6; k++)
+            for (int i = 0; i < scores.Count; i++)
             {
                 Viewbox viewbox = new Viewbox();
                 TextBlock text = new TextBlock();
-                viewbox.SetValue(Grid.RowProperty, k);
-                text.Text = highscores[keyList[k]] + " - " + keyList[k];
+                var rowDefinition = new RowDefinition();
+                string name = highscores.GetName(i);
+                int score = highscores.GetScore(i);
+                HighScores.RowDefinitions.Add(rowDefinition);
+                viewbox.SetValue(Grid.RowProperty, i);
+
+                text.Text = name + " - " + score;
                 viewbox.Child = text;
                 HighScores.Children.Add(viewbox);
             }
