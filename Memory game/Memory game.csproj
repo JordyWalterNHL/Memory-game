@@ -102,7 +102,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Back.jpg" />
+    <Resource Include="Images\Bicycles\Background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Bicycles\1.png" />
@@ -128,6 +128,35 @@
     <Resource Include="Images\Thanksgiving\8.png" />
     <Resource Include="Images\Thanksgiving\CardBack.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Halloween\CardBack.png" />
+    <Resource Include="Images\Halloween\1.png" />
+    <Resource Include="Images\Halloween\2.png" />
+    <Resource Include="Images\Halloween\3.png" />
+    <Resource Include="Images\Halloween\4.png" />
+    <Resource Include="Images\Halloween\5.png" />
+    <Resource Include="Images\Halloween\6.png" />
+    <Resource Include="Images\Halloween\7.png" />
+    <Resource Include="Images\Halloween\8.png" />
+    <Resource Include="Images\Halloween\9.png" />
+    <Resource Include="Images\Halloween\10.png" />
+    <Resource Include="Images\Halloween\11.png" />
+    <Resource Include="Images\Halloween\12.png" />
+    <Resource Include="Images\Halloween\13.png" />
+    <Resource Include="Images\Halloween\14.png" />
+    <Resource Include="Images\Halloween\15.png" />
+    <Resource Include="Images\Halloween\16.png" />
+    <Resource Include="Images\Halloween\17.png" />
+    <Resource Include="Images\Halloween\18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Halloween\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Thanksgiving\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\party.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

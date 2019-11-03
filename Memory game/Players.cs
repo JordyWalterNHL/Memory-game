@@ -13,6 +13,7 @@ namespace Memory_game
         private PlayerData[] players = new PlayerData[2];
         private bool playerTwo;
         Grid playerTurnColor;
+        private string winner;
         public PlayerData CurrentPlayer
         {
             get
@@ -60,6 +61,31 @@ namespace Memory_game
             CurrentPlayer.SetPlayerTurn();
             playerTurnColor.Background = new SolidColorBrush(Colors.Blue);
         }
+        public int ReturnHighScore()
+        {
+            int one = players[0].FetchMemory();
+            int two = players[1].FetchMemory();
+            if (one > two)
+            {
+                winner = ("The winner is: ") + players[0].FetchName();
+                return one;
+            }
+            else if (one < two)
+            {
+                winner = ("The winner is: ") + players[1].FetchName();
+                return two;
+            }
+            else
+            {
+                winner = ("It's a draw!");
+                return one;
+            }
+        }
+        public string ReturnWinnerName()
+        {
+            return winner;
+        }
+    
 
         public void LoadGame(bool turnP1, string name1, string name2, int score1, int score2)
         {
@@ -116,6 +142,14 @@ namespace Memory_game
         {
             memories = 0;
             UpdateUI();
+        }
+        public int FetchMemory()
+        {
+            return memories;
+        }
+        public string FetchName()
+        {
+            return name;
         }
         public void SetPlayerTurn()
         {

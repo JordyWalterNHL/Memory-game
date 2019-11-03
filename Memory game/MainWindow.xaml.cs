@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 
@@ -24,6 +16,10 @@ namespace Memory_game
     public partial class MainWindow : Window
     {
         private int timer = 0;
+        private int milliTimer = 0;
+        private int size = 8;
+        private int rows = 4;
+        private int cols = 4;
         DispatcherTimer dt = new DispatcherTimer();
 
         private HighscoreData highscoreData = new HighscoreData();
@@ -46,7 +42,8 @@ namespace Memory_game
             SortScores();
             SelectWindow.Visibility = Visibility.Collapsed;
             GameWindow.Visibility = Visibility.Collapsed;
-            ExtraWindow.Visibility = Visibility.Collapsed;
+            ExtraWindow.Visibility = Visibility.Collapsed;    
+            EndWindow.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -63,7 +60,7 @@ namespace Memory_game
             //return;
 
             memoryGrid.ResetBoard();
-            timer = -1;
+            timer = 0;
             dt.Start();
         }
         private void HomeButtonClick(object sender, RoutedEventArgs e)
@@ -94,11 +91,12 @@ namespace Memory_game
             if (!String.IsNullOrEmpty(name1) && !String.IsNullOrEmpty(name2))
             {
                     int index = GridSelection.SelectedIndex;
-                    int rows = 4;
-                    int cols = 4;
-                    int size = 8;
                     int themeindex = ThemeSelection.SelectedIndex; 
                     string theme = "";
+
+                    ImageBrush myBrush = new ImageBrush();
+                    ParentGrid.Background = myBrush;
+
                     switch (index)
                     {
                         case 0:
@@ -134,31 +132,35 @@ namespace Memory_game
                             break;
                         case 1:
                             theme = "Halloween";
+                            size = 18;
                             break;
                         case 2:
                             theme = "Thanksgiving";
                             size = 8;
-                            break;
+                            break;                           
+                       
                     }
                     if ((size*2) >= (rows * cols))
                     {
                         Players players = new Players(name1, name2, NameOne, NameTwo, ScoreOne, ScoreTwo, PlayerTurn, PlayerTurnColor);
                         memoryGrid = new MemoryGrid(GameGrid, rows, cols, players, theme);
+                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));
                         SelectWindow.Visibility = Visibility.Collapsed;
                         GameWindow.Visibility = Visibility.Visible;
 
-                        dt.Interval = TimeSpan.FromSeconds(1);
+                        dt.Interval = TimeSpan.FromMilliseconds(50);
                         dt.Tick += dtTicker;
                         dt.Start();
-                }
-                else
-                {
-                    PlayerWarningBox2.Visibility = Visibility.Visible;
-                    Task.Delay(2000).ContinueWith(_ =>
+                    }
+                    else
                     {
-                        PlayerWarningBox2.Visibility = Visibility.Collapsed;
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-                }
+                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/Bicycles/Background.jpg", UriKind.Relative));
+                        PlayerWarningBox2.Visibility = Visibility.Visible;
+                        Task.Delay(2000).ContinueWith(_ =>
+                        {
+                            PlayerWarningBox2.Visibility = Visibility.Collapsed;
+                        }, TaskScheduler.FromCurrentSynchronizationContext());
+                    }
             }
             else
             {
@@ -167,7 +169,7 @@ namespace Memory_game
                 {
                     PlayerWarningBox.Visibility = Visibility.Collapsed;
                 }, TaskScheduler.FromCurrentSynchronizationContext());
-            }
+            }      
         }
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
@@ -183,7 +185,12 @@ namespace Memory_game
         {
             System.Windows.Application.Current.Shutdown();
         }
- 
+        private void PlayHomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Visible;
+            SelectWindow.Visibility = Visibility.Collapsed;
+        }
+
         /// <summary>
         /// Optellende timer
         /// </summary>
@@ -191,13 +198,20 @@ namespace Memory_game
         /// <param name="e"></param>
         private void dtTicker(object sender, EventArgs e)
         {
-            timer++;
+            milliTimer++;
+
+            if (milliTimer >= 9)
+            {
+                timer++;
+                milliTimer = 0;
+            }
 
             TimerLabel.Text = timer.ToString();
 
-            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
+            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == (rows*cols)/2)
             {
                 dt.Stop();
+                Winner();
             }
         }
 
@@ -222,13 +236,22 @@ namespace Memory_game
                         keyList[i] = temp;
                     }
                 }
-                Score1.Text = highscores[keyList[0]] + " - " + keyList[0];
-                Score2.Text = highscores[keyList[1]] + " - " + keyList[1];
-                Score3.Text = highscores[keyList[2]] + " - " + keyList[2];
-                Score4.Text = highscores[keyList[3]] + " - " + keyList[3];
-                Score5.Text = highscores[keyList[4]] + " - " + keyList[4];
-                Score6.Text = highscores[keyList[5]] + " - " + keyList[5];
             }
+            for (int k = 0; k < 6; k++)
+            {
+                Viewbox viewbox = new Viewbox();
+                TextBlock text = new TextBlock();
+                viewbox.SetValue(Grid.RowProperty, k);
+                text.Text = highscores[keyList[k]] + " - " + keyList[k];
+                viewbox.Child = text;
+                HighScores.Children.Add(viewbox);
+            }
+        }
+        private void Winner()
+        {
+            EndWindow.Visibility = Visibility.Visible;
+            WinnerScore.Text = memoryGrid.HighestScore().ToString();
+            WinnerName.Text = memoryGrid.WinnerName();
         }
     }
 }
