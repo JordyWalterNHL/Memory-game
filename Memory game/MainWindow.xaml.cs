@@ -283,7 +283,7 @@ namespace Memory_game
         private void Winner()
         {
             EndWindow.Visibility = Visibility.Visible;
-            WinnerScore.Text = memoryGrid.HighestScore().ToString();
+            WinnerScore.Text = "The score is: " + memoryGrid.HighestScore().ToString();
             WinnerName.Text = memoryGrid.WinnerName();
         }
     }
