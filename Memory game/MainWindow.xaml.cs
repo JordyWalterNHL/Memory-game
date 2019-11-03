@@ -17,6 +17,9 @@ namespace Memory_game
     {
         private int timer = 0;
         private int milliTimer = 0;
+        private int size = 8;
+        private int rows = 4;
+        private int cols = 4;
         DispatcherTimer dt = new DispatcherTimer();
         private Dictionary<int,string> highscores = new Dictionary<int,string>()
         {
@@ -74,9 +77,6 @@ namespace Memory_game
             if (!String.IsNullOrEmpty(name1) && !String.IsNullOrEmpty(name2))
             {
                     int index = GridSelection.SelectedIndex;
-                    int rows = 4;
-                    int cols = 4;
-                    int size = 8;
                     int themeindex = ThemeSelection.SelectedIndex; 
                     string theme = "";
 
@@ -194,7 +194,7 @@ namespace Memory_game
 
             TimerLabel.Text = timer.ToString();
 
-            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == 8)
+            if (Convert.ToInt32(ScoreOne.Text) + Convert.ToInt32(ScoreTwo.Text) == (rows*cols)/2)
             {
                 dt.Stop();
                 Winner();
