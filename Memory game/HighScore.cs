@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 
 namespace Memory_game
 {
+    [Serializable]
     class HighScore
     {
         private List<string> names = new List<string>();
         private List<int> scores = new List<int>();
 
-        public HighScore(List<string> names, List<int> scores)
+        public HighScore()
         {
-            this.names = names;
-            this.scores = scores;
-            SortScores();
+            SortScores(names, scores);
         }
-        private void SortScores()
+
+        //public HighScore(List<string> names, List<int> scores)
+        //{
+        //    this.names = names;
+        //    this.scores = scores;
+        //    SortScores(names, scores);
+        //}
+        private void SortScores(List<string> names, List<int> scores)
         {
             int i, j, tempscore;
             string tempname;
@@ -50,6 +56,19 @@ namespace Memory_game
             string name;
             name = names[index];
             return name;
+        }
+
+        public int EntriesAmount()
+        {
+            return scores.Count;
+        }
+
+        public void AddNewHighscore(string name, int score)
+        {
+            names.Add(name);
+            scores.Add(score);
+
+            SortScores(names, scores);
         }
     }
 }

@@ -12,36 +12,41 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Memory_game
 {
-    class MemoryCard
+    /// <summary>
+    /// Card used to store all the important information
+    /// </summary>
+    [Serializable]
+    public class MemoryCard
     {
-        private ImageSource backSource;
-        private ImageSource frontSource;
+        public string back;     ///String with the path to the backside image
+        public string front;    ///String with the path to the frontside image
 
-        public int id;
-        public int value;
+        public int id;          ///Number of the place in the GameCards list
+        public int value;       ///Value of the card, used to compare if you have a pair
 
-        public bool beenClicked;
+        public bool beenClicked;    ///Bool used to check if you've pressed it
+        public bool beenUsed;       ///Bool to check if you've got a pair of the cards
 
-        public MemoryCard(ImageSource frontSource, int id, string theme)
-        {
-            this.backSource = new BitmapImage(new Uri("Images/" + theme + "/CardBack.png", UriKind.Relative));
-            this.frontSource = frontSource;
-            this.id = id;
-        }
+        /// <summary>
+        /// Sets the background of the image, exept when you've already got a pair of it, then it returns null
+        /// </summary>
         public ImageSource GetBackSource()
         {
-            return backSource;
+            if (beenUsed)
+                return null;
+
+            return new BitmapImage(new Uri(back, UriKind.Relative)); ;
         }
 
+        /// <summary>
+        /// Sets the front of the image
+        /// </summary>
         public ImageSource GetFrontSource()
         {
-            return frontSource;
+            return new BitmapImage(new Uri(front, UriKind.Relative)); ;
         }
     }
 }
-
