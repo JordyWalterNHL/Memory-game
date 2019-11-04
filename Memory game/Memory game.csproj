@@ -91,6 +91,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Saves\highscores.sav" />
     <None Include="Saves\memory.sav" />
     <Resource Include="Fonts\ChunkFive-Regular.otf" />
     <None Include="Properties\Settings.settings">

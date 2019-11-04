@@ -21,20 +21,15 @@ namespace Memory_game
         private int rows = 4;
         private int cols = 4;
         DispatcherTimer dt = new DispatcherTimer();
-        private List<string> names = new List<string>() /*{ 
-        "Hylke","David","Berber","Bas","Jort","Jordy","test","test2","test3","test4","test5"
-        }*/;
-        private List<int> scores = new List<int>() /* { 
-        8,3,7,3,2,4,5,1,1,1,1
-        }*/;
-        private HighScore highscores;
+        private HighScore highscores = new HighScore();
         
         MemoryGrid memoryGrid;
         private string name1, name2, theme;
         
         public MainWindow()
         {
-            highscores = new HighScore(names, scores);
+            //SaveAndLoad.WriteToBinairyFile("highscores.sav", highscores);
+
             InitializeComponent();
             SortScores();
             SelectWindow.Visibility = Visibility.Collapsed;
@@ -292,7 +287,10 @@ namespace Memory_game
 
         private void SortScores()
         {
-            int length = scores.Count;
+            LoadHighscore();
+
+            int length = highscores.EntriesAmount();
+
             if (length>10)
             {
                 length = 10;
@@ -312,14 +310,24 @@ namespace Memory_game
                 HighScores.Children.Add(viewbox);
             }
         }
+
+        private void LoadHighscore()
+        {
+            highscores = SaveAndLoad.ReadFromBinaryFile<HighScore>("highscores.sav");
+        }
+
         private void Winner()
         {
             EndWindow.Visibility = Visibility.Visible;
             WinnerScore.Text = "The score is: " + memoryGrid.HighestScore().ToString();
             WinnerName.Text = memoryGrid.WinnerName();
 
-            highscores.AddNewHighscore(memoryGrid.WinnerName(), memoryGrid.HighestScore());
-            //TODO: Saving the new highscore
+            string name = memoryGrid.OnlyNameWinner();
+            if (name != null)
+            {
+                highscores.AddNewHighscore(memoryGrid.OnlyNameWinner(), memoryGrid.HighestScore());
+                SaveAndLoad.WriteToBinairyFile("highscores.sav", highscores);
+            }
         }
     }
 }

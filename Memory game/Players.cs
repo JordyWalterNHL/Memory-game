@@ -17,6 +17,7 @@ namespace Memory_game
         private bool playerTwo;                                 ///Bool used to check who's turn it is
         Grid playerTurnColor;                                   
         private string winner;
+        private string winnerName;
 
         /// <summary>
         /// Easy way to get the current player, use the bool to return an int, use the int in the array
@@ -97,12 +98,14 @@ namespace Memory_game
             int two = players[1].FetchMemory();
             if (one > two)
             {
-                winner = ("The winner is: ") + players[0].FetchName();
+                winnerName = players[0].FetchName();
+                winner = ("The winner is: ") + winnerName;
                 return one;
             }
             else if (one < two)
             {
-                winner = ("The winner is: ") + players[1].FetchName();
+                winnerName = players[1].FetchName();
+                winner = ("The winner is: ") + winnerName;
                 return two;
             }
             else
@@ -114,6 +117,11 @@ namespace Memory_game
         public string ReturnWinnerName()
         {
             return winner;
+        }
+
+        public string ReturnOnlyName()
+        {
+            return winnerName;
         }
     
         /// <summary>

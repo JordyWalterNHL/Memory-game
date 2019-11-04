@@ -168,6 +168,7 @@ namespace Memory_game
         {
             grid.Children.Clear();
             GameCards.Clear();
+            MemoryCards.Clear();
             TurnedCards.Clear();
             player.ClearMemory();
             player.SetPlayerOne();
@@ -182,6 +183,10 @@ namespace Memory_game
         public string WinnerName()
         {
             return player.ReturnWinnerName();
+        }
+        public string OnlyNameWinner()
+        {
+            return player.ReturnOnlyName();
         }
 
         /// <summary>
@@ -255,8 +260,11 @@ namespace Memory_game
         public void LoadGame()
         {
             grid.Children.Clear();
+
             GameCards.Clear();
+            MemoryCards.Clear();
             TurnedCards.Clear();
+
             player.ClearMemory();
             player.SetPlayerOne();
             canClick = true;
