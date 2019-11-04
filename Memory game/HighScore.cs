@@ -15,9 +15,9 @@ namespace Memory_game
         {
             this.names = names;
             this.scores = scores;
-            SortScores(names, scores);
+            SortScores();
         }
-        private void SortScores(List<string> names, List<int> scores)
+        private void SortScores()
         {
             int i, j, tempscore;
             string tempname;
