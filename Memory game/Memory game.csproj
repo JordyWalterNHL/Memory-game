@@ -168,5 +168,17 @@
   <ItemGroup>
     <Resource Include="Images\Halloween\reset.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Halloween\load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Halloween\save.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

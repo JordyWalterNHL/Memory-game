@@ -45,25 +45,25 @@ namespace Memory_game
         /// <param name="e"></param>
         private void ResetButtonClick(object sender, RoutedEventArgs e)
         {
-            //memoryGrid.LoadGame();
-            //timer = memoryGrid.savedTime - 1;
-            //dt.Start();
-
-            //return;
-
             memoryGrid.ResetBoard();
             timer = 0;
             dt.Start();
         }
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
-            //memoryGrid.savedTime = timer;
-            //memoryGrid.SaveGame();
-
-            //return;
-
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
+        }
+        private void GameSaveClick(object sender, RoutedEventArgs e)
+        {
+            memoryGrid.savedTime = timer;
+            memoryGrid.SaveGame();
+        }
+        private void GameLoadClick(object sender, RoutedEventArgs e)
+        {
+            memoryGrid.LoadGame();
+            timer = memoryGrid.savedTime - 1;
+            dt.Start();
         }
         private void PlayButtonClick(object sender, RoutedEventArgs e)
         {
@@ -154,13 +154,16 @@ namespace Memory_game
                         if (theme == "Halloween")
                         {
                             GameHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
-                            
+                            GameLoad.Source = new BitmapImage(new Uri("../../Images/Halloween/load.png", UriKind.Relative));
+                            GameSave.Source = new BitmapImage(new Uri("../../Images/Halloween/save.png", UriKind.Relative));
                             SelectHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
                             GameReset.Source = new BitmapImage(new Uri("../../Images/Halloween/reset.png", UriKind.Relative));
                         }
                         else
                         {
                             GameHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
+                            GameLoad.Source = new BitmapImage(new Uri("../../Images/load.png", UriKind.Relative));
+                            GameSave.Source = new BitmapImage(new Uri("../../Images/save.png", UriKind.Relative));
                             ExtrasHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
                             SelectHome.Source = new BitmapImage(new Uri("../../Images/home.png", UriKind.Relative));
                             GameReset.Source = new BitmapImage(new Uri("../../Images/reset.png", UriKind.Relative));
@@ -309,6 +312,14 @@ namespace Memory_game
                 viewbox.Child = text;
                 HighScores.Children.Add(viewbox);
             }
+        }
+
+        private void ResetHighscores(object sender, RoutedEventArgs e)
+        {
+            highscores.Reset();
+            SaveAndLoad.WriteToBinairyFile("highscores.sav",highscores);
+            HighScores.Children.Clear();
+            SortScores();
         }
 
         private void LoadHighscore()

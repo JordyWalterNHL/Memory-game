@@ -70,5 +70,10 @@ namespace Memory_game
 
             SortScores(names, scores);
         }
+        public void Reset()
+        {
+            names.Clear();
+            scores.Clear();
+        }
     }
 }
