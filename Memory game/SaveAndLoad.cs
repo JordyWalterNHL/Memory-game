@@ -23,7 +23,7 @@ namespace Memory_game
         /// <param name="fileName">string name of the file</param>
         /// <param name="objectToWrite">object instance, with all the data you want to save</param>
         /// <param name="append">bool used to check if you want to add or overwrite the current savefile</param>
-        public static void WriteToBinairyFile<T>(string fileName, T objectToWrite, bool append = false)
+        public static void WriteToBinaryFile<T>(string fileName, T objectToWrite, bool append = false)
         {
             using (Stream stream = File.Open(path + fileName, append ? FileMode.Append : FileMode.Create))
             {

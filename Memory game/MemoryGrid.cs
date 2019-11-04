@@ -330,7 +330,7 @@ namespace Memory_game
             player.SaveGame(out SaveData.namePlayerOne, out SaveData.scorePlayerOne, out SaveData.namePlayerTwo, out SaveData.scorePlayerTwo, out SaveData.playerTwo);
             SaveData.timer = savedTime;
 
-            SaveAndLoad.WriteToBinairyFile("memory.sav", SaveData);
+            SaveAndLoad.WriteToBinaryFile("memory.sav", SaveData);
         }
     }
 }
