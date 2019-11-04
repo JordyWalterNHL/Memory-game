@@ -92,8 +92,6 @@ namespace Memory_game
             if (!String.IsNullOrEmpty(name1) && !String.IsNullOrEmpty(name2))
             {
                     int index = GridSelection.SelectedIndex;
-                    int rows = 4;
-                    int cols = 4;
                     int themeindex = ThemeSelection.SelectedIndex; 
                     string theme = "";
 
