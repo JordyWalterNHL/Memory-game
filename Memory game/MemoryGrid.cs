@@ -15,15 +15,34 @@ namespace Memory_game
     /// </summary>
     class MemoryGrid
     {
+        /// <summary>
+        /// Player grid
+        /// </summary>
         private Grid grid;
+        /// <summary>
+        /// 
+        /// </summary>
         private Players player;
-
+        /// <summary>
+        /// amount of rows, columns and amount of cards
+        /// </summary>
         private int rows, colums, cardAmount;
+        /// <summary>
+        /// The ID of the two clicked cards
+        /// </summary>
         private int firstCardId, secondCardId;
 
+        /// <summary>
+        /// Bool that sets if you can click a card or not
+        /// </summary>
         private bool canClick = true;
+        /// <summary>
+        /// bool that indicates if the current click turns over the first or second card
+        /// </summary>
         private bool secondClick;
-
+        /// <summary>
+        /// String that contains the current selected theme
+        /// </summary>
         private string theme;
 
         /// <summary>
@@ -176,14 +195,26 @@ namespace Memory_game
             secondClick = false;
             AddCards();
         }
+        /// <summary>
+        /// Returns the highest score
+        /// </summary>
+        /// <returns>int: returns the highest score</returns>
         public int HighestScore()
         {
             return player.ReturnHighScore();
         }
+        /// <summary>
+        /// Returns the name of the winner + string
+        /// </summary>
+        /// <returns>string: name of the winner + string</returns>
         public string WinnerName()
         {
             return player.ReturnWinnerName();
         }
+        /// <summary>
+        /// Returns only the name of the winner
+        /// </summary>
+        /// <returns>string: name of the winning player</returns>
         public string OnlyNameWinner()
         {
             return player.ReturnOnlyName();

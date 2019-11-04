@@ -84,14 +84,19 @@ namespace Memory_game
             players[0].ClearMemory();
             players[1].ClearMemory();
         }
-        
-        public void SetPlayerOne()
+        /// <summary>
+        /// Sets current player to the first player
+        /// </summary>
+       public void SetPlayerOne()
         {
             playerTwo = false;
             CurrentPlayer.SetPlayerTurn();
             playerTurnColor.Background = new SolidColorBrush(Colors.Blue);
         }
-
+        /// <summary>
+        /// Returns the highest score, sets winner string
+        /// </summary>
+        /// <returns>int: the highest score</returns>
         public int ReturnHighScore()
         {
             int one = players[0].FetchMemory();
@@ -114,11 +119,18 @@ namespace Memory_game
                 return one;
             }
         }
+        /// <summary>
+        /// Returns winner name with added string
+        /// </summary>
+        /// <returns>string: the name of the winner + string</returns>
         public string ReturnWinnerName()
         {
             return winner;
         }
-
+        /// <summary>
+        /// Returns only the winner's name
+        /// </summary>
+        /// <returns>string: the winner's name</returns>
         public string ReturnOnlyName()
         {
             return winnerName;
@@ -166,14 +178,34 @@ namespace Memory_game
     /// </summary>
     class PlayerData
     {
+        /// <summary>
+        /// name of the player
+        /// </summary>
         private string name;
+        /// <summary>
+        /// textblock for the current player name
+        /// </summary>
         private TextBlock nameBox;
-
+        /// <summary>
+        /// score of the current player
+        /// </summary>
         private int memories;
+        /// <summary>
+        /// textblock for the current player score
+        /// </summary>
         private TextBlock scoreBox;
-
+        /// <summary>
+        /// textblock to indicate whose turn it is
+        /// </summary>
         private TextBlock playerTurn;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="playerName">string:Name of player</param>
+        /// <param name="nameBox">TextBlock: box where names go</param>
+        /// <param name="scoreBox">TextBlock: box where scores go</param>
+        /// <param name="playerTurn">TextBlock: box where playerturn text goes</param>
         public PlayerData(string playerName, TextBlock nameBox, TextBlock scoreBox, TextBlock playerTurn)
         {
             this.name = playerName;
@@ -182,36 +214,58 @@ namespace Memory_game
             this.playerTurn = playerTurn;
             UpdateUI();
         }
-
+        /// <summary>
+        /// Updates the scorebox and textbox in the UI
+        /// </summary>
         private void UpdateUI()
         {
             nameBox.Text = name;
             scoreBox.Text = memories.ToString();
         }
-
+        /// <summary>
+        /// Adds one to score and updates UI
+        /// </summary>
         public void GetMemory()
         {
             memories++;
             UpdateUI();
         }
+        /// <summary>
+        /// Clears all scores and updates UI
+        /// </summary>
         public void ClearMemory()
         {
             memories = 0;
             UpdateUI();
         }
+        /// <summary>
+        /// Gets score
+        /// </summary>
+        /// <returns>int: player score</returns>
         public int FetchMemory()
         {
             return memories;
         }
+        /// <summary>
+        /// Gets name
+        /// </summary>
+        /// <returns>string: player name</returns>
         public string FetchName()
         {
             return name;
         }
+        /// <summary>
+        /// Sets the playerTurn textbox
+        /// </summary>
         public void SetPlayerTurn()
         {
             playerTurn.Text = "It's " + name + "'s turn!";
         }
-
+        /// <summary>
+        /// Helps in loading the players from memory file
+        /// </summary>
+        /// <param name="name">name of player</param>
+        /// <param name="score">score of player</param>
         public void LoadPlayer(string name, int score)
         {
             this.name = name;

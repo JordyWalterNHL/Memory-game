@@ -15,17 +15,45 @@ namespace Memory_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Timer that counts the seconds
+        /// </summary>
         private int timer = 0;
+        /// <summary>
+        /// Timer that counts the milliseconds
+        /// </summary>
         private int milliTimer = 0;
+        /// <summary>
+        /// initializes the size at 8
+        /// </summary>
         private int size = 8;
+        /// <summary>
+        /// initializes row size at 4
+        /// </summary>
         private int rows = 4;
+        /// <summary>
+        /// initializes column size at 4
+        /// </summary>
         private int cols = 4;
+        /// <summary>
+        /// Dispatcher timer
+        /// </summary>
         DispatcherTimer dt = new DispatcherTimer();
+        /// <summary>
+        /// HighScore for tracking and displaying the highscores
+        /// </summary>
         private HighScore highscores = new HighScore();
-        
+        /// <summary>
+        /// starts a MemoryGrid to fill later on
+        /// </summary>
         MemoryGrid memoryGrid;
+        /// <summary>
+        /// strings for name 1, name 2 and the theme.
+        /// </summary>
         private string name1, name2, theme;
-        
+        /// <summary>
+        /// Constructs WPF
+        /// </summary>
         public MainWindow()
         {
             //SaveAndLoad.WriteToBinaryFile("highscores.sav", highscores);
@@ -49,22 +77,42 @@ namespace Memory_game
             timer = 0;
             dt.Start();
         }
+        /// <summary>
+        /// Goes home from Game Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+        /// <summary>
+        /// Saves game to file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameSaveClick(object sender, RoutedEventArgs e)
         {
             memoryGrid.savedTime = timer;
             memoryGrid.SaveGame();
         }
+        /// <summary>
+        /// Loads Game from file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameLoadClick(object sender, RoutedEventArgs e)
         {
             memoryGrid.LoadGame();
             timer = memoryGrid.savedTime - 1;
             dt.Start();
         }
+        /// <summary>
+        /// Shows select window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PlayButtonClick(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Collapsed;
@@ -191,6 +239,11 @@ namespace Memory_game
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }      
         }
+        /// <summary>
+        /// Opens Extras Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExtraButtonClick(object sender, RoutedEventArgs e)
         {
             if (theme == "Halloween")
@@ -204,11 +257,21 @@ namespace Memory_game
             MainMenu.Visibility = Visibility.Collapsed;
             ExtraWindow.Visibility = Visibility.Visible;
         }
+        /// <summary>
+        /// Goes home from extra screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExtraHomeButtonClick(object sender, RoutedEventArgs e)
         {
             ExtraWindow.Visibility = Visibility.Collapsed;
             MainMenu.Visibility = Visibility.Visible;
         }
+        /// <summary>
+        /// Change event for theme selection, changes background
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangeBackground(object sender, SelectionChangedEventArgs e)
         {
 
@@ -254,10 +317,20 @@ namespace Memory_game
                 ExitButton.Foreground = Brushes.Black;
             }
         }
+        /// <summary>
+        /// Exits Game, shuts down current application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
+        /// <summary>
+        /// Goes home from select window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PlayHomeButtonClick(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Visible;
@@ -287,7 +360,9 @@ namespace Memory_game
                 Winner();
             }
         }
-
+        /// <summary>
+        /// Loads highscores, truncates at 10, adds scores to grid
+        /// </summary>
         private void SortScores()
         {
             LoadHighscore();
@@ -313,7 +388,11 @@ namespace Memory_game
                 HighScores.Children.Add(viewbox);
             }
         }
-
+        /// <summary>
+        /// Resets highscores and saves to file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ResetHighscores(object sender, RoutedEventArgs e)
         {
             highscores.Reset();
@@ -321,12 +400,17 @@ namespace Memory_game
             HighScores.Children.Clear();
             SortScores();
         }
-
+        /// <summary>
+        /// Loads highscores from file
+        /// </summary>
         private void LoadHighscore()
         {
             highscores = SaveAndLoad.ReadFromBinaryFile<HighScore>("highscores.sav");
         }
 
+        /// <summary>
+        /// Displays end game window and saves high scores
+        /// </summary>
         private void Winner()
         {
             EndWindow.Visibility = Visibility.Visible;
