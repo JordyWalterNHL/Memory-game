@@ -27,7 +27,7 @@ namespace Memory_game
         private string theme;
 
         /// <summary>
-        /// List used to keep track of the cards that you turned (max 2)
+        /// List used to keep track of the cards that you turned
         /// </summary>
         private List<Image> TurnedCards = new List<Image>();
         /// <summary>
@@ -65,11 +65,11 @@ namespace Memory_game
         /// <summary>
         /// Constructor to make the field
         /// </summary>
-        /// <param name="grid1">Play area</param>
-        /// <param name="rows">Amount of rows on the playing field</param>
-        /// <param name="cols">Amount of colums on the playing field</param>
-        /// <param name="player">Reference to all the information of the players</param>
-        /// <param name="theme">Name of the theme you are using</param>
+        /// <param name="grid1">Grid play area</param>
+        /// <param name="rows">int amount of rows on the playing field</param>
+        /// <param name="cols">int amount of colums on the playing field</param>
+        /// <param name="player">Players reference to all the information of the players</param>
+        /// <param name="theme">string name of the theme you are using</param>
         public MemoryGrid(Grid grid1, int rows, int cols, Players player, string theme)
         {
             grid = grid1;

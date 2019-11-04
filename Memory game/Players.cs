@@ -33,12 +33,12 @@ namespace Memory_game
         /// <summary>
         /// Constructor to set all the basic information of the players
         /// </summary>
-        /// <param name="name1">The name the first player chose</param>
-        /// <param name="name2">The name the second player chose</param>
-        /// <param name="nameOne">The TextBlock where the first name will be displayed</param>
-        /// <param name="nameTwo">The TextBlock where the second name will be displayed</param>
-        /// <param name="scoreOne">The TextBlock where the first score will be displayed</param>
-        /// <param name="scoreTwo">The TextBlock where the second score will be displayed</param>
+        /// <param name="name1">String name the first player chose</param>
+        /// <param name="name2">String name the second player chose</param>
+        /// <param name="nameOne">TextBlock where the first name will be displayed</param>
+        /// <param name="nameTwo">TextBlock where the second name will be displayed</param>
+        /// <param name="scoreOne">TextBlock where the first score will be displayed</param>
+        /// <param name="scoreTwo">TextBlock where the second score will be displayed</param>
         /// <param name="playerTurn"></param>
         /// <param name="playerTurnColor"></param>
         public Players(string name1, string name2, TextBlock nameOne, TextBlock nameTwo, TextBlock scoreOne, TextBlock scoreTwo, TextBlock playerTurn, Grid playerTurnColor)
@@ -183,17 +183,27 @@ namespace Memory_game
             UpdateUI();
         }
 
+        /// <summary>
+        /// Update the UI, used when you change score
+        /// </summary>
         private void UpdateUI()
         {
             nameBox.Text = name;
             scoreBox.Text = memories.ToString();
         }
 
+        /// <summary>
+        /// Add a point when you get a memory
+        /// </summary>
         public void GetMemory()
         {
             memories++;
             UpdateUI();
         }
+
+        /// <summary>
+        /// Reset the amount of memories, update ui
+        /// </summary>
         public void ClearMemory()
         {
             memories = 0;
@@ -212,6 +222,11 @@ namespace Memory_game
             playerTurn.Text = "It's " + name + "'s turn!";
         }
 
+        /// <summary>
+        /// Load the information of the player 
+        /// </summary>
+        /// <param name="name">string name of the player</param>
+        /// <param name="score">int amount of memories</param>
         public void LoadPlayer(string name, int score)
         {
             this.name = name;
