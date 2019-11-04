@@ -28,7 +28,7 @@ namespace Memory_game
         
         public MainWindow()
         {
-            //SaveAndLoad.WriteToBinairyFile("highscores.sav", highscores);
+            //SaveAndLoad.WriteToBinaryFile("highscores.sav", highscores);
 
             InitializeComponent();
             SortScores();
@@ -154,6 +154,7 @@ namespace Memory_game
                             GameHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
                             GameLoad.Source = new BitmapImage(new Uri("../../Images/Halloween/load.png", UriKind.Relative));
                             GameSave.Source = new BitmapImage(new Uri("../../Images/Halloween/save.png", UriKind.Relative));
+                            ExtrasHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
                             SelectHome.Source = new BitmapImage(new Uri("../../Images/Halloween/home.png", UriKind.Relative));
                             GameReset.Source = new BitmapImage(new Uri("../../Images/Halloween/reset.png", UriKind.Relative));
                         }
@@ -246,6 +247,7 @@ namespace Memory_game
             else
             {
                 BigWindow.Foreground = Brushes.Black;
+                ThemeSelection.Foreground = Brushes.Black;
                 PlayButton.Foreground = Brushes.Black;
                 ExtrasButton.Foreground = Brushes.Black;
                 SelectPlay.Foreground = Brushes.Black;
@@ -315,7 +317,7 @@ namespace Memory_game
         private void ResetHighscores(object sender, RoutedEventArgs e)
         {
             highscores.Reset();
-            SaveAndLoad.WriteToBinairyFile("highscores.sav",highscores);
+            SaveAndLoad.WriteToBinaryFile("highscores.sav",highscores);
             HighScores.Children.Clear();
             SortScores();
         }
@@ -335,7 +337,7 @@ namespace Memory_game
             if (name != null)
             {
                 highscores.AddNewHighscore(memoryGrid.OnlyNameWinner(), memoryGrid.HighestScore());
-                SaveAndLoad.WriteToBinairyFile("highscores.sav", highscores);
+                SaveAndLoad.WriteToBinaryFile("highscores.sav", highscores);
             }
         }
     }
