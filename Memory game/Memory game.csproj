@@ -180,5 +180,17 @@
   <ItemGroup>
     <Resource Include="Images\Halloween\save.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Thanksgiving\10.png" />
+    <Resource Include="Images\Thanksgiving\11.png" />
+    <Resource Include="Images\Thanksgiving\12.png" />
+    <Resource Include="Images\Thanksgiving\13.png" />
+    <Resource Include="Images\Thanksgiving\14.png" />
+    <Resource Include="Images\Thanksgiving\15.png" />
+    <Resource Include="Images\Thanksgiving\16.png" />
+    <Resource Include="Images\Thanksgiving\17.png" />
+    <Resource Include="Images\Thanksgiving\18.png" />
+    <Resource Include="Images\Thanksgiving\9.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

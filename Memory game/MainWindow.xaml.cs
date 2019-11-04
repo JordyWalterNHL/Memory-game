@@ -137,7 +137,7 @@ namespace Memory_game
                             break;
                         case 2:
                             theme = "Thanksgiving";
-                            size = 8;
+                            size = 18;
                             break;                           
                        
                     }
@@ -173,8 +173,8 @@ namespace Memory_game
                     }
                     else
                     {
-                        myBrush.ImageSource = new BitmapImage(new Uri("../../Images/Bicycles/Background.jpg", UriKind.Relative));
-                        PlayerWarningBox2.Visibility = Visibility.Visible;
+                    myBrush.ImageSource = new BitmapImage(new Uri("../../Images/Bicycles/Background.jpg", UriKind.Relative));
+                    PlayerWarningBox2.Visibility = Visibility.Visible;
                         Task.Delay(2000).ContinueWith(_ =>
                         {
                             PlayerWarningBox2.Visibility = Visibility.Collapsed;
@@ -228,7 +228,7 @@ namespace Memory_game
                     break;
                 case 2:
                     theme = "Thanksgiving";
-                    size = 8;
+                    size = 18;
                     break;
             }
             myBrush.ImageSource = new BitmapImage(new Uri("../../Images/" + theme + "/Background.jpg", UriKind.Relative));

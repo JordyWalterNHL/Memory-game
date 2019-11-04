@@ -198,7 +198,7 @@
                             <TextBlock>Halloween  6x6</TextBlock>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock>Thanksgiving  4x4</TextBlock>
+                            <TextBlock>Thanksgiving  6x6</TextBlock>
                         </ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
